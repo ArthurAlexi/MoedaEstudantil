@@ -5,16 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlunoComponent } from './aluno/aluno.component';
 import { EmpresaComponent } from './empresa/empresa.component';
+import { HomeComponent } from './home/home.component';
+import { MatIconModule } from '@angular/material/icon';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AlunoComponent,
-    EmpresaComponent
+    EmpresaComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatIconModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
