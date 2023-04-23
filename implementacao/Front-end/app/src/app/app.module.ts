@@ -8,6 +8,8 @@ import { EmpresaComponent } from './empresa/empresa.component';
 import { HomeComponent } from './home/home.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -15,13 +17,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppComponent,
     AlunoComponent,
     EmpresaComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatIconModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

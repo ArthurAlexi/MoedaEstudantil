@@ -1,0 +1,52 @@
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+
+.h-custom {
+    height: calc(100% - 73px);
+}
+
+@media (max-width: 1000px) {
+    .h-custom {
+        height: 100%;
+    }
+    .icon-display{
+        display: none;
+    }
+}
+
+label{
+    color: white;
+    font-size: 15px;
+}
+
+p{
+    color: white;
+    font-size: 15px;
+}
+
+.icon-display{
+    transform: scale(20);
+    color: white;
+}
+
+.voltar{
+    color: white;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.link-sucess{
+    font-size: 18px;
+    color: yellow;
+}
