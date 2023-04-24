@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ParceirosComponent } from './parceiros/parceiros.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     AlunoComponent,
     EmpresaComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ParceirosComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,26 @@
-<p>empresa works!</p>
+<div class="container">
+  <div class="form-body">
+    <div class="row">
+      <div class="form-holder">
+        <div class="form-content">
+          <a style="color: yellow;" class="voltar" href="/home"><mat-icon>arrow_back_ios</mat-icon>Voltar</a>
+          <div class="form-items">
+            <h1 style="color: white;" class="offset-6">Crie sua conta</h1>
+            <form class="requires-validation col-6 offset-2">
+              <input class="form-control m-3" type="email" name="email" placeholder="Digite seu email" required #email>
+              <input class="form-control m-3" type="password" name="password" placeholder="Digite uma senha válida"
+                required #senha>
+              <input class="form-control m-3" type="text" name="name" placeholder="Digite seu nome" required #nome>
+              <input class="form-control m-3" type="text" name="cnpj" placeholder="Digite seu cnpj" required #cnpj>
+              <input class="form-control m-3" type="text" name="instituicao" placeholder="Digite seu instituicao" required #instituicao>
+            </form>
+            <div class="form-button mt-3">
+              <button id="submit" type="" class="btn btn-warning offset-7" (click)="cadastrar()">Cadastrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
