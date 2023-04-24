@@ -15,9 +15,13 @@ public class Aluno extends Pessoa{
     private String endereco;
 
     @ManyToOne
-    private Instituicao instituicao;
-
-    @ManyToOne
     private Curso curso;
 
+    public Aluno(String id, String email, String senha, String nome, String cpf, String creditos, String rg,
+                 String endereco, Curso curso) {
+        super(id, email, senha, nome, cpf, creditos);
+        this.rg = rg;
+        this.endereco = endereco;
+        this.curso = curso;
+    }
 }

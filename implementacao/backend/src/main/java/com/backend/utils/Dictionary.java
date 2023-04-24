@@ -9,4 +9,6 @@ public class Dictionary {
 
     public static final String INSTITUICAO = "instituicao";
 
+    public static final String ALUNO = "aluno";
+
 }

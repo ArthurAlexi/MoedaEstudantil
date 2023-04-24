@@ -1,7 +1,6 @@
 package com.backend.controller;
 
 import com.backend.model.Empresa;
-import com.backend.model.Instituicao;
 import com.backend.service.EmpresaService;
 import net.minidev.json.JSONObject;
 import org.springframework.http.MediaType;
