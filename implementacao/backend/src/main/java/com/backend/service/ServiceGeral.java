@@ -1,8 +1,10 @@
 package com.backend.service;
 
 
+import com.backend.model.Aluno;
 import com.backend.model.Empresa;
 import com.backend.model.Instituicao;
+import com.backend.repository.AlunoRepository;
 import com.backend.repository.EmpresaRepository;
 import com.backend.repository.InstituicaoRepository;
 import com.backend.utils.Dictionary;
@@ -25,11 +27,16 @@ public class ServiceGeral {
 
     private final InstituicaoRepository INSTITUICAO_REPOSITORY;
 
+    private final AlunoRepository ALUNO_REPOSITORY;
+
+
     /* Constructor */
 
-    public ServiceGeral(EmpresaRepository empresaRepository, InstituicaoRepository instituicaoRepository) {
+    public ServiceGeral(EmpresaRepository empresaRepository, InstituicaoRepository instituicaoRepository,
+                        AlunoRepository alunoRepository) {
         this.EMPRESA_REPOSITORY = empresaRepository;
         this.INSTITUICAO_REPOSITORY = instituicaoRepository;
+        this.ALUNO_REPOSITORY = alunoRepository;
     }
 
     /* Métodos gerais */
@@ -85,6 +92,11 @@ public class ServiceGeral {
                 return ResponseEntity.ok(empresas);
             }
 
+            case Dictionary.ALUNO -> {
+                List<Aluno> alunos = ((AlunoRepository)REPOSITORYS.get(repository)).findAll();
+                return ResponseEntity.ok(alunos);
+            }
+
             default -> System.out.println("Repositório não existe: " + repository);
         }
 
@@ -103,6 +115,7 @@ public class ServiceGeral {
 
         switch (repository){
             case Dictionary.EMPRESA -> objeto_procura = ((EmpresaRepository)REPOSITORYS.get(repository)).findById(id);
+            case Dictionary.ALUNO -> objeto_procura = ((AlunoRepository)REPOSITORYS.get(repository)).findById(id);
             default -> System.out.println("Erro ao achar o objeto de id: " + id);
         }
 
@@ -119,6 +132,7 @@ public class ServiceGeral {
 
         switch (repository){
             case Dictionary.EMPRESA -> ((EmpresaRepository)REPOSITORYS.get(repository)).deleteById(id);
+            case Dictionary.ALUNO -> ((AlunoRepository)REPOSITORYS.get(repository)).deleteById(id);
             default -> System.out.println("Erro ao achar o objeto de id: " + id);
         }
 
@@ -185,6 +199,7 @@ public class ServiceGeral {
 
         REPOSITORYS.put(Dictionary.EMPRESA, this.EMPRESA_REPOSITORY);
         REPOSITORYS.put(Dictionary.INSTITUICAO, this.INSTITUICAO_REPOSITORY);
+        REPOSITORYS.put(Dictionary.ALUNO, this.ALUNO_REPOSITORY);
 
     }
 
