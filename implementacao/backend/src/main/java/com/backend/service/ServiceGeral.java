@@ -13,6 +13,7 @@ import com.backend.utils.Dictionary;
 import jakarta.transaction.Transactional;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.data.annotation.Transient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -46,7 +47,6 @@ public class ServiceGeral {
 
     /* Métodos gerais */
 
-    @Transactional
     public ResponseEntity<?> insereObjeto(Object objeto, String repository){
 
         if(objetoIsNulo(objeto)){
@@ -105,6 +105,8 @@ public class ServiceGeral {
                         return ResponseEntity.badRequest().body("Curso não existe");
                     }
 
+                    ((Aluno) objeto).setCurso(curso_add);
+
                     if(instituicao.getId() == null){
                         ((InstituicaoRepository)REPOSITORYS.get
                                 (Dictionary.INSTITUICAO)).save(instituicao);
@@ -116,6 +118,8 @@ public class ServiceGeral {
                         if (instituicao_add == null) {
                             return ResponseEntity.badRequest().body("Instituição não existe");
                         }
+
+                        ((Aluno) objeto).getCurso().setInstituicao(instituicao_add);
                     }
                 }
 

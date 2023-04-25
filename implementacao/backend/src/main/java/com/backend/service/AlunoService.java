@@ -78,8 +78,8 @@ public class AlunoService {
                 new Curso(
                         (String) curso.get("id"),
                         (String) curso.get("nome"),
-                            new Instituicao((String) instituicao.get("id"),
-                                            (String) instituicao.get("nome"))
+                            new Instituicao((String) instituicao.get("nome"),
+                                            (String) instituicao.get("id"))
 
                 )
 
