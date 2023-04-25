@@ -3,11 +3,13 @@ package com.backend.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Data
 public class Aluno extends Pessoa{
 
     private String rg;

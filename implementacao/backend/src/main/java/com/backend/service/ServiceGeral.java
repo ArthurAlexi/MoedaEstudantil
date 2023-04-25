@@ -2,9 +2,11 @@ package com.backend.service;
 
 
 import com.backend.model.Aluno;
+import com.backend.model.Curso;
 import com.backend.model.Empresa;
 import com.backend.model.Instituicao;
 import com.backend.repository.AlunoRepository;
+import com.backend.repository.CursoRepository;
 import com.backend.repository.EmpresaRepository;
 import com.backend.repository.InstituicaoRepository;
 import com.backend.utils.Dictionary;
@@ -29,14 +31,17 @@ public class ServiceGeral {
 
     private final AlunoRepository ALUNO_REPOSITORY;
 
+    private final CursoRepository CURSO_REPOSITORY;
+
 
     /* Constructor */
 
     public ServiceGeral(EmpresaRepository empresaRepository, InstituicaoRepository instituicaoRepository,
-                        AlunoRepository alunoRepository) {
+                        AlunoRepository alunoRepository, CursoRepository cursoRepository) {
         this.EMPRESA_REPOSITORY = empresaRepository;
         this.INSTITUICAO_REPOSITORY = instituicaoRepository;
         this.ALUNO_REPOSITORY = alunoRepository;
+        this.CURSO_REPOSITORY = cursoRepository;
     }
 
     /* Métodos gerais */
@@ -52,7 +57,7 @@ public class ServiceGeral {
 
             case Dictionary.EMPRESA -> {
 
-                if(((Empresa) objeto).getInstituicao() == null){
+                if( ((Empresa) objeto).getInstituicao() == null){
                     return ResponseEntity.badRequest().body("Instituicao está nula");
                 }
 
@@ -72,6 +77,49 @@ public class ServiceGeral {
                 }
 
                 ((EmpresaRepository)REPOSITORYS.get(repository)).save((Empresa) objeto);
+
+            }
+
+            case Dictionary.ALUNO -> {
+
+                Curso curso = ((Aluno) objeto).getCurso();
+                Instituicao instituicao = curso.getInstituicao();
+
+                if(curso == null){
+                    return ResponseEntity.badRequest().body("Curso está nulo");
+                }
+
+                if(instituicao == null){
+                    return ResponseEntity.badRequest().body("Instituição está nulo");
+                }
+
+                if(curso.getId() == null){
+                    ((CursoRepository)REPOSITORYS.get
+                            (Dictionary.CURSO)).save(curso);
+                }else{
+
+                    Curso curso_add = ((CursoRepository)REPOSITORYS.get
+                            (Dictionary.CURSO)).getReferenceById(curso.getId());
+
+                    if(curso_add == null){
+                        return ResponseEntity.badRequest().body("Curso não existe");
+                    }
+
+                    if(instituicao.getId() == null){
+                        ((InstituicaoRepository)REPOSITORYS.get
+                                (Dictionary.INSTITUICAO)).save(instituicao);
+                    }else {
+
+                        Instituicao instituicao_add = ((InstituicaoRepository) REPOSITORYS.get
+                                (Dictionary.INSTITUICAO)).getReferenceById(instituicao.getId());
+
+                        if (instituicao_add == null) {
+                            return ResponseEntity.badRequest().body("Instituição não existe");
+                        }
+                    }
+                }
+
+                ((AlunoRepository)REPOSITORYS.get(repository)).save((Aluno) objeto);
 
             }
 
@@ -162,8 +210,20 @@ public class ServiceGeral {
 
                 ((EmpresaRepository)REPOSITORYS.get(repository)).saveAndFlush((Empresa) objeto_procura.get());
 
+            }
+
+            case Dictionary.ALUNO -> {
+
+                objeto_procura = ((AlunoRepository)REPOSITORYS.get(repository)).findById(((Aluno) objeto).getId());
+
+                if(objeto_procura.isEmpty()){
+                    return ResponseEntity.badRequest().body("Objeto não existe");
+                }
+
+                ((AlunoRepository)REPOSITORYS.get(repository)).saveAndFlush((Aluno) objeto_procura.get());
 
             }
+
 
             default -> System.out.println("Erro ao atualizar objeto do tipo: " + repository);
 
@@ -200,6 +260,7 @@ public class ServiceGeral {
         REPOSITORYS.put(Dictionary.EMPRESA, this.EMPRESA_REPOSITORY);
         REPOSITORYS.put(Dictionary.INSTITUICAO, this.INSTITUICAO_REPOSITORY);
         REPOSITORYS.put(Dictionary.ALUNO, this.ALUNO_REPOSITORY);
+        REPOSITORYS.put(Dictionary.CURSO, this.CURSO_REPOSITORY);
 
     }
 

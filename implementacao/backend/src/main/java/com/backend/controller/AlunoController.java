@@ -1,7 +1,6 @@
 package com.backend.controller;
 
 import com.backend.model.Aluno;
-import com.backend.model.Empresa;
 import com.backend.service.AlunoService;
 import net.minidev.json.JSONObject;
 import org.springframework.http.MediaType;

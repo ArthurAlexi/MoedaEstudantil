@@ -11,4 +11,6 @@ public class Dictionary {
 
     public static final String ALUNO = "aluno";
 
+    public static final String CURSO = "curso";
+
 }

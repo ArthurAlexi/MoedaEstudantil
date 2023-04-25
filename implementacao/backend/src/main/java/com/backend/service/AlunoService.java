@@ -1,9 +1,11 @@
 package com.backend.service;
 
+import com.backend.dtos.UsuarioDTO;
 import com.backend.model.Aluno;
 import com.backend.model.Curso;
 import com.backend.model.Empresa;
 import com.backend.model.Instituicao;
+import com.backend.repository.AlunoRepository;
 import com.backend.utils.Dictionary;
 import net.minidev.json.JSONObject;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +19,11 @@ public class AlunoService {
 
     private final ServiceGeral SERVICE;
 
-    public AlunoService(ServiceGeral serviceGeral) {
+    private final AlunoRepository ALUNO_REPOSITORY;
+
+    public AlunoService(ServiceGeral serviceGeral, AlunoRepository alunoRepository) {
         this.SERVICE = serviceGeral;
+        this.ALUNO_REPOSITORY = alunoRepository;
     }
 
     public ResponseEntity<?> insereAluno(Aluno aluno){
@@ -41,6 +46,18 @@ public class AlunoService {
         return SERVICE.alteraObjeto(aluno, Dictionary.ALUNO);
     }
 
+    public ResponseEntity<?> realizaLogin(UsuarioDTO usuarioDTO){
+
+        Aluno aluno = ALUNO_REPOSITORY.realizaLogin(usuarioDTO.email(), usuarioDTO.senha());
+
+        if(aluno == null){
+            return ResponseEntity.badRequest().body("Email ou senha incorretos");
+        }
+
+        return ResponseEntity.ok("200");
+
+
+    }
 
     /* Util */
 
@@ -66,6 +83,15 @@ public class AlunoService {
 
                 )
 
+        );
+
+    }
+
+    public UsuarioDTO fabricaDTO(JSONObject json){
+
+        return new UsuarioDTO(
+                (String) json.get("email"),
+                (String) json.get("senha")
         );
 
     }

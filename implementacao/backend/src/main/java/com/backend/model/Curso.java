@@ -2,12 +2,14 @@ package com.backend.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "tb_curso")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Curso {
 
     @Id
