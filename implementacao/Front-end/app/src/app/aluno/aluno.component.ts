@@ -14,10 +14,9 @@ export class AlunoComponent {
   @ViewChild("nome") nome: any;
   @ViewChild("email") email: any;
   @ViewChild("cpf") cpf: any;
-  @ViewChild("instituicao") instituicao: any;
   @ViewChild("senha") senha: any;
   @ViewChild("rg") rg: any;
-  @ViewChild("profissao") profissao: any;
+  @ViewChild("endereco") endereco: any;
   @ViewChild("curso") curso: any;
 
   cadastrar() {
@@ -25,21 +24,25 @@ export class AlunoComponent {
     const email = this.email.nativeElement.value;
     const cpf = this.cpf.nativeElement.value;
     const rg = this.rg.nativeElement.value;
-    const instituicao = this.instituicao.nativeElement.value;
     const senha = this.senha.nativeElement.value;
     const curso = this.curso.nativeElement.value;
-
-    const url = '';
+    const endereco = this.endereco.nativeElement.value;
+    const url = 'http://localhost:8081/api/v1/aluno/insereAluno';
     let body = {
-      "name": nome,
-      "password": senha,
+      "nome" : nome,
+      "cpf" : cpf,
+      "senha": senha,
       "email": email,
-      "cpf": cpf,
+      "endereco" : endereco,
       "rg": rg,
-      "instituicao": instituicao,
-      "curso": curso,
+      "curso": {
+        "nome" : curso,
+        "instituicao" : {
+          "nome" : "puc"
+        }
+      }
     };
-
+    console.log(body)
     this.http.post(url, body).subscribe(response => {
       console.log('res', response)
       alert("Cadastro realizado com sucesso")

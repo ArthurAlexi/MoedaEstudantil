@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { EmpresaComponent } from './empresa/empresa.component';
 import { AlunoComponent } from './aluno/aluno.component';
 import { ParceirosComponent } from './parceiros/parceiros.component';
+import { AllAlunosComponent } from './all-alunos/all-alunos.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -12,7 +13,7 @@ const routes: Routes = [
   {path: 'criarEmpresa', component: EmpresaComponent },
   {path: 'criarAluno', component: AlunoComponent},
   {path: 'parceiros', component: ParceirosComponent},
-  {path: 'alunos', component: AlunoComponent},
+  {path: 'alunos', component: AllAlunosComponent},
   {path: '', redirectTo: 'home', pathMatch:'full'}
 ];
 

@@ -25,13 +25,15 @@ export class EmpresaComponent {
     const instituicao = this.instituicao.nativeElement.value;
     const senha = this.senha.nativeElement.value;
 
-    const url = 'http://localhost:8080/api/v1/empresa/insereEmpresa';
+    const url = 'http://localhost:8081/api/v1/empresa/insereEmpresa';
     let body = {
-      "name": nome,
-      "password": senha,
+      "nome": nome,
+      "senha": senha,
       "email": email,
       "cnpj": cnpj,
-      "instituicao": instituicao,
+      "instituicao": {
+        "nome" : instituicao
+      },
     };
 
     this.http.post(url, body).subscribe(response => {

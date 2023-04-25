@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  
+
   @ViewChild("email") email: any;
   @ViewChild("senha") senha: any;
 
@@ -22,12 +22,12 @@ export class LoginComponent {
       const email = this.email.nativeElement.value;
       const senha = this.senha.nativeElement.value;
 
-      this.http.get(`http://localhost:8080/api/usuario/retornaUsuarioPeloEmail/${email}`).subscribe(response => {
+      this.http.post(`http://localhost:8081/api/v1/login/${email}/${senha}`,{}).subscribe(response => {
         const user = response as any
-        if(user?.password === senha ){
+
           localStorage.setItem('user', JSON.stringify(user));
           this.router.navigate(['/user'])
-        }
+
        }, error => {
          this.invalido = true;
          console.log('Erro: ', error);

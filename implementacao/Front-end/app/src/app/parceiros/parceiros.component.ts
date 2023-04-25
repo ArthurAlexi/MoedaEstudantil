@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ParceirosComponent {
   parceiros: any
-  URL = 'http://localhost:8080/api/v1/empresa/retornaTodasEmpresas'
+  URL = 'http://localhost:8081/api/v1/empresa/retornaTodasEmpresas'
 
   constructor(private http: HttpClient, private router: Router) { }
 

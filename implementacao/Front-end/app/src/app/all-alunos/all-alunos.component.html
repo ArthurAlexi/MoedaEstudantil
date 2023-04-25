@@ -1,8 +1,8 @@
-<h1>Lista de Alunos</h1>
-<ul>
+<h1 style="color: yellow;" >Lista de Alunos</h1>
+<ul style="background-color: white;" >
   <li *ngFor="let aluno of alunos">
-    <strong>Nome:</strong> {{ aluno.nome }}<br>
-    <strong>Curso:</strong> {{ aluno.curso }}<br>
-    <strong>Instituição:</strong> {{ aluno.instituicao }}
+    <strong>email:</strong> {{ aluno?.email }}<br>
+    <strong>Curso:</strong> {{ aluno?.curso?.nome }}<br>
+    <strong>Instituição:</strong> {{ aluno?.curso?.instituicao?.nome  }}
   </li>
 </ul>

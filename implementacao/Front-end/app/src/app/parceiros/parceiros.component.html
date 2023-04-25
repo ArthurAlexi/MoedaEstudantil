@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="row">
-    <!-- <div *ngFor="let contrato of contratos"> -->
+    <div *ngFor="let empresa of parceiros">
     <div class="col-4 m-2">
 
       <div class="card" style="width: 18rem;">
@@ -14,17 +14,17 @@
           Contrato
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Nome: </li>
-          <li class="list-group-item">CNPJ: </li>
-          <li class="list-group-item">E-mail: </li>
-          <li class="list-group-item">Instituição: </li>
+          <li class="list-group-item">Nome: {{empresa?.nome}}</li>
+          <li class="list-group-item">CNPJ: {{empresa?.cnpj}}</li>
+          <li class="list-group-item">E-mail: {{empresa?.email}}</li>
+          <li class="list-group-item">Instituição: {{empresa?.instituicao?.nome}}</li>
 
           <li class="list-group-item">
           </li>
         </ul>
       </div>
 
-      <!-- </div> -->
+      </div>
     </div>
 
   </div>
