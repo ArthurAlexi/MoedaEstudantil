@@ -35,7 +35,9 @@ export class UserAlunoComponent {
       rg: this.alunoEdit.rg,
       cpf: this.alunoEdit.cpf,
       endereco: this.alunoEdit.endereco,
-      instituicao: this.alunoEdit.instituicao
+      instituicao: {
+        nome: this.alunoEdit.instituicao
+      }
     }
 
     this.http.put(url, alunoEditado).subscribe(response => {
