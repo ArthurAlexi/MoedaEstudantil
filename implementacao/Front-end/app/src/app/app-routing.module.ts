@@ -12,6 +12,7 @@ const routes: Routes = [
   {path: 'criarEmpresa', component: EmpresaComponent },
   {path: 'criarAluno', component: AlunoComponent},
   {path: 'parceiros', component: ParceirosComponent},
+  {path: 'alunos', component: AlunoComponent},
   {path: '', redirectTo: 'home', pathMatch:'full'}
 ];
 

@@ -11,6 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ParceirosComponent } from './parceiros/parceiros.component';
+import { AllAlunosComponent } from './all-alunos/all-alunos.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { ParceirosComponent } from './parceiros/parceiros.component';
     EmpresaComponent,
     HomeComponent,
     LoginComponent,
-    ParceirosComponent
+    ParceirosComponent,
+    AllAlunosComponent
   ],
   imports: [
     BrowserModule,
