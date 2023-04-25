@@ -1,0 +1,25 @@
+<h1>Informações do Aluno</h1>
+<p><strong>Nome:</strong> {{ aluno.nome }}</p>
+<p><strong>Curso:</strong> {{ aluno.curso }}</p>
+<p><strong>RG:</strong> {{ aluno.rg }}</p>
+<p><strong>CPF:</strong> {{ aluno.cpf }}</p>
+<p><strong>Endereço:</strong> {{ aluno.endereco }}</p>
+<p><strong>Créditos:</strong> {{ aluno.creditos }}</p>
+
+<button (click)="editarAluno()" class="btn-editar">Editar</button>
+<button (click)="deletar()" class="btn-deletar">Deletar</button>
+
+<div class="modal" *ngIf="modalAberto">
+  <h2>Editar Aluno</h2>
+  <form (submit)="editar()">
+    <input [(ngModel)]="alunoEdit.nome" name="nome" placeholder="Nome" required>
+    <input [(ngModel)]="alunoEdit.curso" name="curso" placeholder="Curso" required>
+    <input [(ngModel)]="alunoEdit.rg" name="rg" placeholder="RG" required>
+    <input [(ngModel)]="alunoEdit.cpf" name="cpf" placeholder="CPF" required>
+    <input [(ngModel)]="alunoEdit.endereco" name="endereco" placeholder="Endereço" required>
+    <input [(ngModel)]="alunoEdit.instituicao" name="instituicao" placeholder="Instituição" required>
+    <input [(ngModel)]="alunoEdit.creditos" name="creditos" placeholder="Créditos" required>
+    <button type="submit">Salvar</button>
+    <button type="button" (click)="fecharModal()">Cancelar</button>
+  </form>
+</div>

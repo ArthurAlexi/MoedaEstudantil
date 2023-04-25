@@ -12,6 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ParceirosComponent } from './parceiros/parceiros.component';
 import { AllAlunosComponent } from './all-alunos/all-alunos.component';
+import { UserAlunoComponent } from './user-aluno/user-aluno.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { AllAlunosComponent } from './all-alunos/all-alunos.component';
     HomeComponent,
     LoginComponent,
     ParceirosComponent,
-    AllAlunosComponent
+    AllAlunosComponent,
+    UserAlunoComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { AllAlunosComponent } from './all-alunos/all-alunos.component';
     MatIconModule,
     NgbModule,
     HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
