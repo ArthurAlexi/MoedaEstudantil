@@ -1,46 +1,75 @@
 .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s, visibility 0.3s;
-  }
-  
-  .modal.modal-aberto {
-    visibility: visible;
-    opacity: 1;
-  }
-  
-  .modal h2 {
-    margin-top: 0;
-  }
-  
-  .modal form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .btn-editar,
-  .btn-deletar {
-    margin-right: 10px;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s;
+  display: flex;
+  flex-direction: column; 
+  height: 60%;
+}
 
-  p{
-    color: white;
-  }
+.modal.modal-aberto {
+  visibility: visible;
+  opacity: 1;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  list-style-type: none;
+  max-width: 400px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-  h1{
-    color: white;
-  }
+.modal h2 {
+  margin-top: 0;
+}
 
-  h1{
-    color: white;
-  }
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-editar,
+.btn-deletar {
+  margin-right: 10px;
+}
+
+.container {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  list-style-type: none;
+  max-width: 400px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container .text-center {
+  text-align: center;
+}
+
+.container .btn {
+  margin-top: 1rem;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.container .btn-deletar {
+  margin-left: 0.75rem;
+}
