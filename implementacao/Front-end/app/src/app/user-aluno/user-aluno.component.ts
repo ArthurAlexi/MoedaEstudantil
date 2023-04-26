@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-aluno',
@@ -10,17 +10,19 @@ import { ActivatedRoute } from '@angular/router';
 export class UserAlunoComponent implements OnInit{
 
   constructor(
-    private route: ActivatedRoute,
+    private router: Router,
     private http: HttpClient
   ){}
 
+  aluno: any;
+
   ngOnInit(): void {
-    this.exibirAluno();
+    this.aluno = JSON.parse(localStorage.getItem('user') as any); 
+    console.log(this.aluno)
   }
 
   modalAberto = false;
   alunoEdit: any = {};
-  aluno: any;
 
   editarAluno() {
     this.modalAberto = true;
@@ -34,48 +36,47 @@ export class UserAlunoComponent implements OnInit{
     const url = 'http://localhost:8080/api/v1/aluno/alteraAluno';
 
     let alunoEditado = {
-      nome: this.alunoEdit.nome,
-      curso: this.alunoEdit.curso,
-      rg: this.alunoEdit.rg,
-      cpf: this.alunoEdit.cpf,
-      endereco: this.alunoEdit.endereco,
-      instituicao: {
-        nome: this.alunoEdit.instituicao
+      'nome': this.alunoEdit.nome,
+      'rg': this.alunoEdit.rg,
+      'cpf': this.alunoEdit.cpf,
+      'endereco': this.alunoEdit.endereco,
+      'creditos': this.aluno.creditos,
+      'email': this.aluno.email,
+      'senha': this.aluno.senha,
+      'id': this.aluno.id,
+      'curso': {
+        'id': this.aluno.curso.id,
+        'nome' : this.aluno.curso.nome,
+        'instituicao' : {
+          'id': this.aluno.curso.instituicao.id,
+          'nome' : this.aluno.curso.instituicao.nome
+        }
       }
     }
-
+    console.log(alunoEditado)
     this.http.put(url, alunoEditado).subscribe(response => {
       console.log('res', response)
+      alert('Aluno alterado com sucesso!');
+      this.fecharModal();
     }, error => {
       console.log('Erro: ', error);
-    });
-    this.fecharModal();
-  }
-
-  exibirAluno() {
-    const id = this.route.snapshot.params['id'];
-    console.log(id)
-    const url = `http://localhost:8080/api/v1/aluno/retornaAlunoPeloId/${id}`;
-
-    this.http.get(url).subscribe(response => {
-      console.log('res', response)
-      this.aluno = response as any;
-    }, error => {
-      console.log('Erro: ', error);
+      alert('Não foi possível alterar o aluno!');
+      this.fecharModal();
     });
   }
 
   deletar() {
-    const id = this.route.snapshot.params['id'];
-    const url = `http://localhost:8080/api/v1/aluno/deletaAlunoPeloId/${id}`;
+    const id = this.aluno.id;
+    const url = `http://localhost:8081/api/v1/aluno/deletaAlunoPeloId/${id}`;
 
     this.http.delete(url).subscribe(response => {
       console.log('res', response)
       alert('Aluno deletado com sucesso!');
+      this.router.navigate(['/home']);
     }, error => {
       console.log('Erro: ', error);
-      alert('Não foi possivel deletar o aluno!');
-    });
+      this.router.navigate(['/home']);
+        });
   }
 
 }

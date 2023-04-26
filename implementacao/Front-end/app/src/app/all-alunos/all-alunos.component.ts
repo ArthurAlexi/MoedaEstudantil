@@ -24,7 +24,7 @@ export class AllAlunosComponent implements OnInit{
 
   exibirAlunos() {
 
-    const url = 'http://localhost:8081/api/v1/aluno/retornaTodosAluno';
+    const url = 'http://localhost:8081/api/v1/aluno/retornaTodosAlunos';
 
     this.http.get(url).subscribe(response => {
       console.log('res', response)

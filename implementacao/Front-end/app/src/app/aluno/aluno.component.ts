@@ -45,11 +45,10 @@ export class AlunoComponent {
     console.log(body)
     this.http.post(url, body).subscribe(response => {
       console.log('res', response)
-      alert("Cadastro realizado com sucesso")
       this.router.navigate(['/login']);
     }, error => {
       console.log('Erro: ', error);
-      alert("Não foi possível realizar o cadastro")
+      this.router.navigate(['/login']);
     });
 
 
