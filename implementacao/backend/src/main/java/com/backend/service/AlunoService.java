@@ -46,19 +46,6 @@ public class AlunoService {
         return SERVICE.alteraObjeto(aluno, Dictionary.ALUNO);
     }
 
-    public ResponseEntity<?> realizaLogin(UsuarioDTO usuarioDTO){
-
-        Aluno aluno = ALUNO_REPOSITORY.realizaLogin(usuarioDTO.email(), usuarioDTO.senha());
-
-        if(aluno == null){
-            return ResponseEntity.badRequest().body("Email ou senha incorretos");
-        }
-
-        return ResponseEntity.ok(aluno);
-
-
-    }
-
     /* Util */
 
     public Aluno fabricaAluno(JSONObject aluno){
@@ -87,13 +74,6 @@ public class AlunoService {
 
     }
 
-    public UsuarioDTO fabricaDTO(JSONObject json){
 
-        return new UsuarioDTO(
-                (String) json.get("email"),
-                (String) json.get("senha")
-        );
-
-    }
 
 }
