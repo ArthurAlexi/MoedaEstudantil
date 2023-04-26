@@ -20,7 +20,7 @@ public class Curso {
 
     @ManyToOne(
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             targetEntity = Instituicao.class
     )
     private Instituicao instituicao;

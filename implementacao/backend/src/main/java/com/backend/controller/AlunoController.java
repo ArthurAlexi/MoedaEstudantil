@@ -27,8 +27,8 @@ public class AlunoController {
 
     }
 
-    @GetMapping(value = "retornaTodosAluno")
-    public ResponseEntity<?> retornaTodasEmpresas(){
+    @GetMapping(value = "retornaTodosAlunos")
+    public ResponseEntity<?> retornaTodosAlunos(){
 
         return ALUNO_SERVICE.retornaTodosAlunos();
 
