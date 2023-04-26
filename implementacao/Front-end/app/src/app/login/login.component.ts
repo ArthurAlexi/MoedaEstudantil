@@ -22,11 +22,9 @@ export class LoginComponent {
       const email = this.email.nativeElement.value;
       const senha = this.senha.nativeElement.value;
 
-      this.http.post(`http://localhost:8081/api/v1/login/${email}/${senha}`,{}).subscribe(response => {
-        const user = response as any
-
-          localStorage.setItem('user', JSON.stringify(user));
-          this.router.navigate(['/user'])
+      this.http.post(`http://localhost:8081/api/v1/login/${email}/${senha}`, {}).subscribe(response => {
+        console.log(response);
+        this.router.navigate(['/user-aluno']);
 
        }, error => {
          this.invalido = true;

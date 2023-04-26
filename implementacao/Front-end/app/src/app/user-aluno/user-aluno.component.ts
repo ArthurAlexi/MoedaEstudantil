@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -7,12 +7,16 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './user-aluno.component.html',
   styleUrls: ['./user-aluno.component.css']
 })
-export class UserAlunoComponent {
+export class UserAlunoComponent implements OnInit{
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient
   ){}
+
+  ngOnInit(): void {
+    this.exibirAluno();
+  }
 
   modalAberto = false;
   alunoEdit: any = {};
@@ -50,6 +54,7 @@ export class UserAlunoComponent {
 
   exibirAluno() {
     const id = this.route.snapshot.params['id'];
+    console.log(id)
     const url = `http://localhost:8080/api/v1/aluno/retornaAlunoPeloId/${id}`;
 
     this.http.get(url).subscribe(response => {
