@@ -54,7 +54,7 @@ public class AlunoService {
             return ResponseEntity.badRequest().body("Email ou senha incorretos");
         }
 
-        return ResponseEntity.ok("200");
+        return ResponseEntity.ok(aluno);
 
 
     }
