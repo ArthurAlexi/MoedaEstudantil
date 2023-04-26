@@ -17,7 +17,7 @@ export class UserAlunoComponent implements OnInit{
   aluno: any;
 
   ngOnInit(): void {
-    this.aluno = JSON.parse(localStorage.getItem('user') as any); 
+    this.aluno = JSON.parse(localStorage.getItem('user') as any);
     console.log(this.aluno)
   }
 
@@ -65,6 +65,33 @@ export class UserAlunoComponent implements OnInit{
     });
   }
 
+  editarEmpresa(){
+    const url = 'http://localhost:8080/api/v1/empresa/alteraEmpresa';
+
+    let alunoEditado = {
+      'nome': this.alunoEdit.nome,
+      'cnpj': this.alunoEdit.cnpj,
+      'email': this.aluno.email,
+      'senha': this.aluno.senha,
+      'id': this.aluno.id,
+      'instituicao' : {
+        'id': this.aluno.instituicao.id,
+          'nome' : this.aluno.instituicao.nome
+      }
+    }
+    console.log(alunoEditado)
+    this.http.put(url, alunoEditado).subscribe(response => {
+      console.log('res', response)
+      alert('Aluno alterado com sucesso!');
+      this.fecharModal();
+    }, error => {
+      console.log('Erro: ', error);
+      alert('Não foi possível alterar o aluno!');
+      this.fecharModal();
+    });
+
+  }
+
   deletar() {
     const id = this.aluno.id;
     const url = `http://localhost:8081/api/v1/aluno/deletaAlunoPeloId/${id}`;
@@ -77,6 +104,26 @@ export class UserAlunoComponent implements OnInit{
       console.log('Erro: ', error);
       this.router.navigate(['/home']);
         });
+  }
+
+  deletarEmpresa() {
+    const id = this.aluno.id;
+    const url = `http://localhost:8081/api/v1/empresa/deletaEmpresaPeloId/${id}`;
+
+    this.http.delete(url).subscribe(response => {
+      console.log('res', response)
+      alert('Emrpesa deletado com sucesso!');
+      this.router.navigate(['/home']);
+    }, error => {
+      console.log('Erro: ', error);
+      alert('Emrpesa deletado com sucesso!');
+      this.router.navigate(['/home']);
+        });
+  }
+
+  logout() {
+    localStorage.removeItem('user')
+    this.router.navigate(['home'])
   }
 
 }

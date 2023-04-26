@@ -1,25 +1,56 @@
-<div class="container text-center">
-  <h1>Informações do Aluno</h1>
-  <p><strong>Nome:</strong> {{ aluno.nome }}</p>
-  <p><strong>Curso:</strong> {{ aluno.curso.nome }}</p>
-  <p><strong>RG:</strong> {{ aluno.rg }}</p>
-  <p><strong>CPF:</strong> {{ aluno.cpf }}</p>
-  <p><strong>Endereço:</strong> {{ aluno.endereco }}</p>
-  <p><strong>Créditos:</strong> {{ aluno.creditos }}</p>
-  <p><strong>Créditos:</strong> {{ aluno.curso.instituicao.nome }}</p>
+<div *ngIf="aluno?.cnpj === null  ; else empresa">
 
-  <button (click)="editarAluno()" class="btn btn-warning mt-3">Editar</button>
-  <button (click)="deletar()" class="btn btn-danger mt-3">Deletar</button>
+
+  <div class="container text-center">
+    <button class="btn btn-warning" (click)="logout()"> - sair - </button>
+    <h1>Informações do Aluno</h1>
+    <p><strong>Nome:</strong> {{ aluno.nome }}</p>
+    <p><strong>Curso:</strong> {{ aluno.curso.nome }}</p>
+    <p><strong>RG:</strong> {{ aluno.rg }}</p>
+    <p><strong>CPF:</strong> {{ aluno.cpf }}</p>
+    <p><strong>Endereço:</strong> {{ aluno.endereco }}</p>
+    <p><strong>Créditos:</strong> {{ aluno.creditos }}</p>
+    <p><strong>Créditos:</strong> {{ aluno.curso.instituicao.nome }}</p>
+
+    <button (click)="editarAluno()" class="btn btn-warning mt-3">Editar</button>
+    <button (click)="deletar()" class="btn btn-danger mt-3">Deletar</button>
+  </div>
+
+  <div class="modal" [ngClass]="{'modal-aberto': modalAberto}">
+    <h2>Editar Aluno</h2>
+    <form (submit)="editarEmpresa()">
+      <input [(ngModel)]="alunoEdit.nome" name="nome" placeholder="Nome" required>
+      <input [(ngModel)]="alunoEdit.rg" name="rg" placeholder="RG" required>
+      <input [(ngModel)]="alunoEdit.cpf" name="cpf" placeholder="CPF" required>
+      <input [(ngModel)]="alunoEdit.endereco" name="endereco" placeholder="Endereço" required>
+      <button type="submit" class="btn btn-warning mt-3">Salvar</button>
+      <button type="button" (click)="fecharModal()" class="btn btn-danger mt-3">Cancelar</button>
+    </form>
+  </div>
 </div>
 
-<div class="modal" [ngClass]="{'modal-aberto': modalAberto}">
-  <h2>Editar Aluno</h2>
-  <form (submit)="editar()">
-    <input [(ngModel)]="alunoEdit.nome" name="nome" placeholder="Nome" required>
-    <input [(ngModel)]="alunoEdit.rg" name="rg" placeholder="RG" required>
-    <input [(ngModel)]="alunoEdit.cpf" name="cpf" placeholder="CPF" required>
-    <input [(ngModel)]="alunoEdit.endereco" name="endereco" placeholder="Endereço" required>
-    <button type="submit" class="btn btn-warning mt-3">Salvar</button>
-    <button type="button" (click)="fecharModal()" class="btn btn-danger mt-3">Cancelar</button>
-  </form>
-</div>
+<ng-template #empresa>
+  <div class="container text-center">
+    <button class="btn btn-warning" (click)="logout()"> - sair - </button>
+    <h1>Informações da empresa</h1>
+    <p><strong>Nome:</strong> {{ aluno.nome }}</p>
+    <p><strong>email:</strong> {{ aluno.email }}</p>
+    <p><strong>CNPJ:</strong> {{ aluno.cnpj }}</p>
+
+
+    <button (click)="editarAluno()" class="btn btn-warning mt-3">Editar</button>
+    <button (click)="deletarEmpresa()" class="btn btn-danger mt-3">Deletar</button>
+  </div>
+
+  <div class="modal" [ngClass]="{'modal-aberto': modalAberto}">
+    <h2>Editar Aluno</h2>
+    <form (submit)="editar()">
+      <input [(ngModel)]="alunoEdit.nome" name="nome" placeholder="Nome" required>
+      <input [(ngModel)]="alunoEdit.email" name="email" placeholder="email" required>
+      <input [(ngModel)]="alunoEdit.cnpj" name="cnpj" placeholder="cnpj" required>
+      <button type="submit" class="btn btn-warning mt-3">Salvar</button>
+      <button type="button" (click)="fecharModal()" class="btn btn-danger mt-3">Cancelar</button>
+    </form>
+  </div>
+
+</ng-template>

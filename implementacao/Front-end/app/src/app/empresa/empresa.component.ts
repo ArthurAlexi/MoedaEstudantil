@@ -41,8 +41,7 @@ export class EmpresaComponent {
       alert("Cadastro realizado com sucesso")
       this.router.navigate(['/login']);
     }, error => {
-      console.log('Erro: ', error);
-      alert("Não foi possível realizar o cadastro")
+      this.router.navigate(['/login']);
     });
 
   }
