@@ -1,0 +1,18 @@
+<h1 style="color: yellow;" >Lista de Alunos</h1>
+<ul style="background-color: white;" >
+  <li *ngFor="let aluno of alunos">
+    <strong>Nome:</strong> {{ aluno?.nome }}<br>
+    <strong>Email:</strong> {{ aluno?.email }}<br>
+    <strong>Curso:</strong> {{ aluno?.curso?.nome }}<br>
+    <strong>Instituição:</strong> {{ aluno?.curso?.instituicao?.nome }}<br>
+    <strong>Creditos:</strong> {{ aluno?.creditos}}
+    <div class="input-group mb-3">
+      <input class="form-control" type="number" name="creditos" placeholder="Quantidade de creditos"
+          #creditos>
+      <div class="input-group-append">
+          <button class="btn btn-warning" type="button"
+          (click)="pontuarAluno(aluno, creditos)">Pontuar aluno</button>
+      </div>
+  </div>
+  </li>
+</ul>

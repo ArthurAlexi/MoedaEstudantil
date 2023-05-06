@@ -11,9 +11,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ParceirosComponent } from './parceiros/parceiros.component';
-import { AllAlunosComponent } from './all-alunos/all-alunos.component';
 import { UserAlunoComponent } from './user-aluno/user-aluno.component';
 import { FormsModule } from '@angular/forms';
+import { ProfessorComponent } from './professor/professor.component';
 
 
 @NgModule({
@@ -24,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     LoginComponent,
     ParceirosComponent,
-    AllAlunosComponent,
+    ProfessorComponent,
     UserAlunoComponent
   ],
   imports: [
