@@ -1,0 +1,9 @@
+
+<h1 style="color: yellow;">Transações</h1>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let transacao of transacoes">
+      <strong>Aluno:</strong> {{ transacao?.aluno.nome }}<br>
+      <strong>Professor:</strong> {{ transacao?.professor.nome }}<br>
+      <strong>Valor da transação:</strong> {{ transacao?.creditos }}<br>
+    </li>
+  </ul>

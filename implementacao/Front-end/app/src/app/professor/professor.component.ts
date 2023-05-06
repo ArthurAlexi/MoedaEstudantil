@@ -14,11 +14,12 @@ export class ProfessorComponent implements OnInit{
     private router: Router
   ){}
 
+  professor: any;
 
   ngOnInit() {
     this.exibirAlunos();
+    this.professor = JSON.parse(localStorage.getItem('user') as any); 
   }
-
 
   alunos: any[] = [];
   
@@ -38,12 +39,10 @@ export class ProfessorComponent implements OnInit{
   pontuarAluno(aluno: any, creditos: any) {
 
     const url = 'http://localhost:8081/api/v1/aluno/pontuarAluno';
-
-    const professor = JSON.parse(localStorage.getItem('user') as any);      
-    console.log(professor.id)
+    console.log(this.professor.id)
 
     const body = {
-      "idProfessor": professor.id,
+      "idProfessor": this.professor.id,
       "idAluno": aluno.id,
       "creditos": Number(creditos.value),
     };
@@ -55,5 +54,6 @@ export class ProfessorComponent implements OnInit{
       console.log('Erro: ', error);
     });
   }
+  
 
 }

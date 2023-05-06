@@ -14,6 +14,8 @@ import { ParceirosComponent } from './parceiros/parceiros.component';
 import { UserAlunoComponent } from './user-aluno/user-aluno.component';
 import { FormsModule } from '@angular/forms';
 import { ProfessorComponent } from './professor/professor.component';
+import { TransacoesComponent } from './transacoes/transacoes.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { ProfessorComponent } from './professor/professor.component';
     LoginComponent,
     ParceirosComponent,
     ProfessorComponent,
-    UserAlunoComponent
+    UserAlunoComponent,
+    TransacoesComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import { ProfessorComponent } from './professor/professor.component';
     MatIconModule,
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

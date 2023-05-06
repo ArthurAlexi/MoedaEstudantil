@@ -7,6 +7,7 @@ import { AlunoComponent } from './aluno/aluno.component';
 import { ParceirosComponent } from './parceiros/parceiros.component';
 import { UserAlunoComponent } from './user-aluno/user-aluno.component';
 import { ProfessorComponent } from './professor/professor.component';
+import { TransacoesComponent } from './transacoes/transacoes.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'parceiros', component: ParceirosComponent},
   {path: 'professor', component: ProfessorComponent},
   {path: 'user-aluno', component: UserAlunoComponent},
+  {path: 'transacoes', component: TransacoesComponent},
   {path: '', redirectTo: 'home', pathMatch:'full'}
 ];
 
