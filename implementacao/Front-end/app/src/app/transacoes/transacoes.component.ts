@@ -9,18 +9,21 @@ import { Component } from '@angular/core';
 export class TransacoesComponent {
 
   transacoes: any[] = [];
-  
+
   constructor(
     private http: HttpClient,
   ){}
 
 
   ngOnInit() {
+    const data = JSON.parse(localStorage.getItem('transicoes') as any)
+    console.log(data.transicoes)
+    this.transacoes = data.transicoes
   }
-  
+
   exibirTransacoes() {
 
-    const user = JSON.parse(localStorage.getItem('user') as any); 
+    const user = JSON.parse(localStorage.getItem('user') as any);
 
 
     const url = `http://localhost:8081/api/v1/transacao/retornaTodasTransacoes/${user.id}`;

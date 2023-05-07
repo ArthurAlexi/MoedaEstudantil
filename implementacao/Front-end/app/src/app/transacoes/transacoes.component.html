@@ -1,9 +1,18 @@
 
-<h1 style="color: yellow;">Transações</h1>
+<!-- <h1 style="color: yellow;">Transações</h1>
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let transacao of transacoes">
       <strong>Aluno:</strong> {{ transacao?.aluno.nome }}<br>
       <strong>Professor:</strong> {{ transacao?.professor.nome }}<br>
+      <strong>Valor da transação:</strong> {{ transacao?.creditos }}<br>
+    </li>
+  </ul> -->
+  <h1 style="color: yellow;">Transações</h1>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let transacao of transacoes">
+      <strong>Data:</strong> {{ transacao?.data }}<br>
+      <strong>Aluno:</strong> {{ transacao?.nomeAluno }}<br>
+      <strong>Professor:</strong> {{ transacao?.nomeProf }}<br>
       <strong>Valor da transação:</strong> {{ transacao?.creditos }}<br>
     </li>
   </ul>

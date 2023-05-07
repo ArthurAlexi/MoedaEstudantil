@@ -5,6 +5,29 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent {
+
+  ngOnInit() {
+
+    if(localStorage.getItem('prof') !== null){
+        localStorage.removeItem('prof')
+    }
+
+    const profBody = {
+      'name' : 'Prof',
+      'senha' : '123',
+      'moedas' : 1000.0
+    }
+
+    const transicoes = {
+      'transicoes' :[]
+    }
+
+    localStorage.setItem('prof', JSON.stringify(profBody))
+    if(localStorage.getItem('transicoes') === null)
+      localStorage.setItem('transicoes', JSON.stringify(transicoes))
+
+  }
 
 }
