@@ -82,6 +82,8 @@ export class ProfessorComponent implements OnInit{
 
     localStorage.setItem('prof', JSON.stringify(this.profInfos))
     localStorage.setItem('transicoes', JSON.stringify(this.transicoes))
+    let creditosAluno = JSON.parse(localStorage.getItem('creditosAluno') as any) ?? 0;
+    localStorage.setItem('transicoes', JSON.stringify(creditosAluno + temp))
 
   }
 

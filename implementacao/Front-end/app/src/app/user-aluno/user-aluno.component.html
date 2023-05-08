@@ -2,7 +2,7 @@
 
 
   <div class="container text-center">
-    <button class="btn btn-danger" (click)="logout()"> <- Sair </button>
+    <button class="btn btn-danger" (click)="logout()"> - Sair </button>
     <a href="/transacoes"><button class="btn btn-warning"> Minhas transações </button></a>
     <h1>Informações do Aluno</h1>
     <p><strong>Nome:</strong> {{ aluno.nome }}</p>
@@ -10,7 +10,7 @@
     <p><strong>RG:</strong> {{ aluno.rg }}</p>
     <p><strong>CPF:</strong> {{ aluno.cpf }}</p>
     <p><strong>Endereço:</strong> {{ aluno.endereco }}</p>
-    <p><strong>Créditos:</strong> {{ aluno.creditos }}</p>
+    <p><strong>Créditos:</strong> {{ creditosAluno }}</p>
     <p><strong>Créditos:</strong> {{ aluno.curso.instituicao.nome }}</p>
 
     <button (click)="editarAluno()" class="btn btn-warning mt-3">Editar</button>
@@ -19,7 +19,7 @@
 
   <div class="modal" [ngClass]="{'modal-aberto': modalAberto}">
     <h2>Editar Aluno</h2>
-    <form (submit)="editarEmpresa()">
+    <form (submit)="editar()">
       <input [(ngModel)]="alunoEdit.nome" name="nome" placeholder="Nome" required>
       <input [(ngModel)]="alunoEdit.rg" name="rg" placeholder="RG" required>
       <input [(ngModel)]="alunoEdit.cpf" name="cpf" placeholder="CPF" required>
@@ -45,7 +45,7 @@
 
   <div class="modal" [ngClass]="{'modal-aberto': modalAberto}">
     <h2>Editar Empresa</h2>
-    <form (submit)="editar()">
+    <form (submit)="editarEmpresa()">
       <input [(ngModel)]="alunoEdit.nome" name="nome" placeholder="Nome" required>
       <input [(ngModel)]="alunoEdit.email" name="email" placeholder="email" required>
       <input [(ngModel)]="alunoEdit.cnpj" name="cnpj" placeholder="cnpj" required>

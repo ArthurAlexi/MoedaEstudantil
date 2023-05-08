@@ -15,9 +15,10 @@ export class UserAlunoComponent implements OnInit{
   ){}
 
   aluno: any;
-
+  creditosAluno : any
   ngOnInit(): void {
     this.aluno = JSON.parse(localStorage.getItem('user') as any);
+    this.creditosAluno = JSON.parse(localStorage.getItem('creditosAluno') as any);
     console.log(this.aluno)
   }
 

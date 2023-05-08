@@ -1,4 +1,5 @@
 <div class="container topo">
+  <h1 style="color: yellow;">Meus créditos: {{profInfos.creditos}}</h1>
   <h1 style="color: yellow;">Lista de Alunos</h1>
   <a href='/transacoes'><button class="btn btn-warning" type="button">Minhas transações</button></a>
 </div>
@@ -8,7 +9,6 @@
     <strong>Email:</strong> {{ aluno?.email }}<br>
     <strong>Curso:</strong> {{ aluno?.curso?.nome }}<br>
     <strong>Instituição:</strong> {{ aluno?.curso?.instituicao?.nome }}<br>
-    <strong>Creditos:</strong> {{ aluno?.creditos}}
     <div class="input-group mb-3">
       <input class="form-control" type="number" name="creditos" placeholder="Quantidade de creditos" #creditos>
       <div class="input-group-append">

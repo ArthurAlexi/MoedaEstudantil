@@ -12,6 +12,7 @@ export class LoginComponent {
 
   @ViewChild("email") email: any;
   @ViewChild("senha") senha: any;
+  @ViewChild("souProfessor") souProfessor: any;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -21,11 +22,14 @@ export class LoginComponent {
     try {
       const email = this.email.nativeElement.value;
       const senha = this.senha.nativeElement.value;
-
+      const souProfessor = this.souProfessor.nativeElement.value;
+      if(souProfessor)
+        console.log('souProfessor ', souProfessor)
       this.http.post(`http://localhost:8081/api/v1/login/${email}/${senha}`, {email, senha}).subscribe(response => {
         console.log(response);
         const user = response as any
         localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('creditosAluno', user?.creditos);
         this.router.navigate(['/user-aluno']);
 
        }, error => {
