@@ -20,6 +20,7 @@ export class UserAlunoComponent implements OnInit{
     this.aluno = JSON.parse(localStorage.getItem('user') as any);
     this.creditosAluno = JSON.parse(localStorage.getItem('creditosAluno') as any);
     console.log(this.aluno)
+    console.log(this.creditosAluno)
   }
 
   modalAberto = false;

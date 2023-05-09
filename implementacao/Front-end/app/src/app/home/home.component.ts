@@ -17,7 +17,7 @@ export class HomeComponent {
     const profBody = {
       'name' : 'Prof',
       'senha' : '123',
-      'moedas' : 1000.0
+      'creditos' : 1000.0
     }
 
     const transicoes = {

@@ -29,7 +29,8 @@ export class LoginComponent {
         console.log(response);
         const user = response as any
         localStorage.setItem('user', JSON.stringify(user));
-        localStorage.setItem('creditosAluno', user?.creditos);
+        if(localStorage.getItem('creditosAluno') === null)
+          localStorage.setItem('creditosAluno', user?.creditos);
         this.router.navigate(['/user-aluno']);
 
        }, error => {

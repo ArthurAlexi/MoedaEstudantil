@@ -18,11 +18,12 @@ export class TransacoesComponent {
   ngOnInit() {
     const data = JSON.parse(localStorage.getItem('transicoes') as any)
     const user = JSON.parse(localStorage.getItem('user') as any)
-    console.log(data.transicoes)
-    if(user !== null)
-      this.transacoes = data.transicoes.filter((trans: { id: any; }) => trans?.id === user?.id)
+    if(user)
+      this.transacoes = data.transicoes.filter((trans : any)=> trans.idAluno === user.id)
     else
       this.transacoes = data.transicoes
+    console.log(data.transicoes)
+
   }
 
   exibirTransacoes() {

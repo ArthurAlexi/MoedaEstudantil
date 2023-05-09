@@ -22,7 +22,8 @@ export class ProfessorComponent implements OnInit{
     this.professor = JSON.parse(localStorage.getItem('user') as any);
     this.profInfos = JSON.parse(localStorage.getItem('prof') as any);
     this.transicoes = JSON.parse(localStorage.getItem('transicoes') as any);
-    console.log(this.transicoes)
+    console.log('transicoes: ',this.transicoes)
+    console.log('profIndos: ',this.profInfos)
   }
 
   alunos: any[] = [];
@@ -65,17 +66,17 @@ export class ProfessorComponent implements OnInit{
       alert('créditos insuficientes')
       return
     }
-    this.profInfos.creditos -= temp
+    this.profInfos.creditos = this.profInfos.creditos - temp
     const body = {
       "data" : Date(),
       "idAluno": aluno.id,
       "nomeAluno" : aluno?.nome,
-      "nomeProf" : this.profInfos.nome,
+      "nomeProf" : this.profInfos.name,
       "creditos": temp
     };
 
     this.transicoes.transicoes.push(body)
-    alert("Parece que deu certo")
+
     console.log(this.transicoes)
 
     // tacando tudo no local storage
@@ -83,8 +84,9 @@ export class ProfessorComponent implements OnInit{
     localStorage.setItem('prof', JSON.stringify(this.profInfos))
     localStorage.setItem('transicoes', JSON.stringify(this.transicoes))
     let creditosAluno = JSON.parse(localStorage.getItem('creditosAluno') as any) ?? 0;
-    localStorage.setItem('transicoes', JSON.stringify(creditosAluno + temp))
-
+    console.log('creditosAlunos', creditosAluno + temp)
+    localStorage.setItem('creditosAluno', JSON.stringify(creditosAluno + temp))
+    alert("Parece que deu certo")
   }
 
 
