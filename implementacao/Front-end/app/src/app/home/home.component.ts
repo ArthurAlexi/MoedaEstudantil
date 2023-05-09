@@ -16,6 +16,7 @@ export class HomeComponent {
 
     const profBody = {
       'name' : 'Prof',
+      'email' : 'prof@prof',
       'senha' : '123',
       'creditos' : 1000.0
     }

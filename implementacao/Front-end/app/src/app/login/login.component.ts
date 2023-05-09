@@ -12,19 +12,23 @@ export class LoginComponent {
 
   @ViewChild("email") email: any;
   @ViewChild("senha") senha: any;
-  @ViewChild("souProfessor") souProfessor: any;
 
   constructor(private http: HttpClient, private router: Router) { }
 
   invalido: boolean = false;
+  isChecked = false;
 
   logar() {
     try {
       const email = this.email.nativeElement.value;
       const senha = this.senha.nativeElement.value;
-      const souProfessor = this.souProfessor.nativeElement.value;
-      if(souProfessor)
-        console.log('souProfessor ', souProfessor)
+      if(this.isChecked){
+      const prof = JSON.parse(localStorage.getItem('prof') as any);;
+      if(email == prof.email && senha == prof.senha){
+
+      this.router.navigate(['/professor']);
+      }
+      }else{
       this.http.post(`http://localhost:8081/api/v1/login/${email}/${senha}`, {email, senha}).subscribe(response => {
         console.log(response);
         const user = response as any
@@ -38,7 +42,7 @@ export class LoginComponent {
          console.log('Erro: ', error);
        });
 
-
+      }
     } catch (err: any) {
       console.error(err, "logar");
     }

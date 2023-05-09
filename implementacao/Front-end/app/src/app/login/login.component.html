@@ -20,7 +20,7 @@
                 <p class="error-message" *ngIf="invalido" style="color:#FFFC0A">Email ou senha incorretos</p>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheck" #souProfessor>
+              <input class="form-check-input" type="checkbox" value="" id="flexCheck" [(ngModel)]="isChecked" [ngModelOptions]="{standalone: true}">>
               <label class="form-check-label" for="flexCheck">
                 Sou professor.
               </label>
