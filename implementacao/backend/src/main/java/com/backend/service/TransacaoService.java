@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TransacaoService {
 
@@ -54,6 +56,14 @@ public class TransacaoService {
         alunoRepository.saveAndFlush(aluno);
 
         return ResponseEntity.ok(transacao);
+
+    }
+
+    public ResponseEntity<?> retornaTodasTransacoes(){
+
+        List<Transacao> transacaos = transacaoRepository.findAll();
+
+        return ResponseEntity.ok(transacaos);
 
     }
 

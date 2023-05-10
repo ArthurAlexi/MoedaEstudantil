@@ -38,7 +38,7 @@ public class Initialize {
 
         Departamento departamento = new Departamento("Dep", instituicao);
 
-        
+
         DEPARTAMENTO_REPOSITORY.save(
                 departamento
         );

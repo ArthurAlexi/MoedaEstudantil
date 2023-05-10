@@ -25,4 +25,10 @@ public class TransacaoController {
 
     }
 
+    @GetMapping("retornaTodasTransacoes")
+    public ResponseEntity<?> retornaTodasTransacoes(){
+
+        return transacaoService.retornaTodasTransacoes();
+    }
+
 }

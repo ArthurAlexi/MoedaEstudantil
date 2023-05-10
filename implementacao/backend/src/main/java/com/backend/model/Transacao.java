@@ -18,10 +18,10 @@ public class Transacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Professor professor;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Aluno aluno;
 
     private double valor;
