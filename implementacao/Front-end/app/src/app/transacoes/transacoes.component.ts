@@ -18,7 +18,8 @@ export class TransacoesComponent {
   ngOnInit() {
     const data = JSON.parse(localStorage.getItem('transicoes') as any)
     const user = JSON.parse(localStorage.getItem('user') as any)
-    if(user)
+    const isProfessor = JSON.parse(localStorage.getItem('isProfessor') as any);
+    if(!isProfessor)
       this.transacoes = data.transicoes.filter((trans : any)=> trans.idAluno === user.id)
     else
       this.transacoes = data.transicoes

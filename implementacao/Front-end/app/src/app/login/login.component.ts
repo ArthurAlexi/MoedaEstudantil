@@ -23,12 +23,14 @@ export class LoginComponent {
       const email = this.email.nativeElement.value;
       const senha = this.senha.nativeElement.value;
       if(this.isChecked){
-      const prof = JSON.parse(localStorage.getItem('prof') as any);;
+      const prof = JSON.parse(localStorage.getItem('prof') as any);
+      localStorage.setItem('isProfessor', JSON.stringify(this.isChecked))
       if(email == prof.email && senha == prof.senha){
 
       this.router.navigate(['/professor']);
       }
       }else{
+      localStorage.setItem('isProfessor', JSON.stringify(this.isChecked))
       this.http.post(`http://localhost:8081/api/v1/login/${email}/${senha}`, {email, senha}).subscribe(response => {
         console.log(response);
         const user = response as any

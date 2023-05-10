@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { ProfessorComponent } from './professor/professor.component';
 import { TransacoesComponent } from './transacoes/transacoes.component';
 import { RouterModule } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     RouterModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

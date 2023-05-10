@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
 export class ProfessorComponent implements OnInit{
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    public datepipe: DatePipe
   ){}
 
   professor: any;
@@ -42,23 +44,24 @@ export class ProfessorComponent implements OnInit{
   }
 
   pontuarAluno(aluno: any, creditos: any) {
-    /*
-    const url = 'http://localhost:8081/api/v1/aluno/pontuarAluno';
+    
+    /*const url = 'http://localhost:8081/api/v1/transacao/realizaTransacao';
     console.log(this.professor.id)
 
     const body = {
-      "idProfessor": this.professor.id,
-      "idAluno": aluno.id,
-      "creditos": Number(creditos.value),
+      "id_professor": this.professor.id,
+      "id_aluno": aluno.id,
+      "data": this.datepipe.transform(Date(), 'yyyy-MM-dd'),
+      "valor": creditos.value,
     };
 
-    this.http.put(url, body).subscribe(response => {
+    this.http.post(url, body).subscribe(response => {
       console.log('res', response)
       this.alunos = response as any[];
     }, error => {
       console.log('Erro: ', error);
-    });
-    */
+    });*/
+    
     if(this.profInfos === null || this.transicoes === null)
       return
     const temp = Number(creditos.value)
