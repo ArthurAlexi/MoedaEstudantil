@@ -224,7 +224,9 @@ public class ServiceGeral {
                     return ResponseEntity.badRequest().body("Objeto não existe");
                 }
 
-                ((AlunoRepository)REPOSITORYS.get(repository)).saveAndFlush((Aluno) objeto_procura.get());
+                CURSO_REPOSITORY.saveAndFlush(((Aluno) objeto).getCurso());
+
+                ((AlunoRepository)REPOSITORYS.get(repository)).saveAndFlush((Aluno) objeto);
 
             }
 

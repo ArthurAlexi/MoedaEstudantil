@@ -21,4 +21,13 @@ public class Departamento {
     @ManyToOne
     private Instituicao instituicao;
 
+    public Departamento(String nome) {
+        this.nome = nome;
+        this.instituicao = new Instituicao("Inst.", null);
+    }
+
+    public Departamento(String nome, Instituicao instituicao) {
+        this.nome = nome;
+        this.instituicao = instituicao;
+    }
 }
