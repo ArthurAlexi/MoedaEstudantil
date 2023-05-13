@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,6 @@ export class VantagensComponent implements OnInit{
   vantagens: any[] = [];
   clickVantagem: boolean = false;
   vantagem: any = {};
-  modalAberto: boolean = true;
   empresaID: any;
 
   constructor(
@@ -40,7 +39,7 @@ export class VantagensComponent implements OnInit{
     this.clickVantagem = true;
   }
 
-  cadastrarVantagem() {
+  cadastrarVantagem() {    
     const url = 'http://localhost:8080/api/v1/vantagem/criarVantagem';
 
     let vantagemEdit = {
@@ -63,7 +62,7 @@ export class VantagensComponent implements OnInit{
   }
 
   fecharModal() {
-    this.modalAberto = false;
+    this.clickVantagem = false;
   }
 
 

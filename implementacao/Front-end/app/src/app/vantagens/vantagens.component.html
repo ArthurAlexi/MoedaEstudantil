@@ -11,7 +11,7 @@
     </li>
   </ul>
 
-  <div class="modal" [ngClass]="{'modal-aberto': clickVantagem}">
+  <div *ngIf="clickVantagem" class="modal" [ngClass]="{'modal-aberto': clickVantagem}">
     <h2>Criação de Vantagem</h2>
     <form (submit)="cadastrarVantagem()">
       <input [(ngModel)]="vantagem.nome" name="nome" placeholder="Nome" required>
