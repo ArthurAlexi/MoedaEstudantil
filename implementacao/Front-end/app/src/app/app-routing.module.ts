@@ -8,6 +8,8 @@ import { ParceirosComponent } from './parceiros/parceiros.component';
 import { UserAlunoComponent } from './user-aluno/user-aluno.component';
 import { ProfessorComponent } from './professor/professor.component';
 import { TransacoesComponent } from './transacoes/transacoes.component';
+import { VantagensComponent } from './vantagens/vantagens.component';
+import { ComprasComponent } from './compras/compras.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -18,6 +20,8 @@ const routes: Routes = [
   {path: 'professor', component: ProfessorComponent},
   {path: 'user-aluno', component: UserAlunoComponent},
   {path: 'transacoes', component: TransacoesComponent},
+  {path: 'vantagens', component: VantagensComponent},
+  {path: 'compras', component: ComprasComponent},
   {path: '', redirectTo: 'home', pathMatch:'full'}
 ];
 

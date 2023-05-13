@@ -1,0 +1,9 @@
+<h1 style="color: yellow;">Compras</h1>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let compra of compras">
+    <strong>Aluno:</strong> {{ compra?.alunoNome }}<br>
+    <strong>Vantagem:</strong> {{ compra?.vantagemNome }}<br>
+    <strong>Valor:</strong> {{ compra?.valor }}<br>
+  </li>
+</ul>
+

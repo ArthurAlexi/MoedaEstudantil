@@ -1,0 +1,24 @@
+<div class="container topo">
+    <h1 style="color: yellow;">Lista de Vantangens</h1>
+    <button class="btn btn-warning" type="button" (click)="vantagemClick()">Cadastrar nova vantagem</button>
+</div>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let vantagem of vantagens">
+      <strong>Nome:</strong> {{ vantagem?.nome }}<br>
+      <strong>Descrição:</strong> {{ vantagem?.descricao }}<br>
+      <strong>Valor:</strong> {{ vantagem?.valor }}<br>
+      <a href='/compras'><button class="btn btn-warning" type="button">Ver compras</button></a>
+    </li>
+  </ul>
+
+  <div class="modal" [ngClass]="{'modal-aberto': clickVantagem}">
+    <h2>Criação de Vantagem</h2>
+    <form (submit)="cadastrarVantagem()">
+      <input [(ngModel)]="vantagem.nome" name="nome" placeholder="Nome" required>
+      <input [(ngModel)]="vantagem.descricao" name="descricao" placeholder="Descrição" required>
+      <input [(ngModel)]="vantagem.preco" name="preco" placeholder="Valor" required>
+      <button type="submit" class="btn btn-warning mt-3">Salvar</button>
+      <button type="button" (click)="fecharModal()" class="btn btn-danger mt-3">Cancelar</button>
+    </form>
+  </div>
+  

@@ -17,6 +17,8 @@ import { ProfessorComponent } from './professor/professor.component';
 import { TransacoesComponent } from './transacoes/transacoes.component';
 import { RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { VantagensComponent } from './vantagens/vantagens.component';
+import { ComprasComponent } from './compras/compras.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { DatePipe } from '@angular/common';
     ParceirosComponent,
     ProfessorComponent,
     UserAlunoComponent,
-    TransacoesComponent
+    TransacoesComponent,
+    VantagensComponent,
+    ComprasComponent
   ],
   imports: [
     BrowserModule,
