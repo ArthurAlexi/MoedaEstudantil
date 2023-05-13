@@ -1,0 +1,13 @@
+<div class="container topo">
+    <h1 style="color: yellow;">Meus créditos: {{this.user.creditos}}</h1>
+    <h1 style="color: yellow;">Lista de Vantagens</h1>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let vantagem of vantagens">
+      <strong>Nome:</strong> {{ vantagem?.nome }}<br>
+      <strong>Descrição:</strong> {{ vantagem?.descricao }}<br>
+      <strong>Valor:</strong> {{ vantagem?.valor }}<br>
+      <button class="btn btn-warning" type="button" (click)="comprar(vantagem)">Comprar</button>
+    </li>
+  </ul>
+  

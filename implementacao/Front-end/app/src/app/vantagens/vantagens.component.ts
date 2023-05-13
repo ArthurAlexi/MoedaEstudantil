@@ -12,7 +12,7 @@ export class VantagensComponent implements OnInit{
   vantagens: any[] = [];
   clickVantagem: boolean = false;
   vantagem: any = {};
-  empresaID: any;
+  user: any;
 
   constructor(
     private http: HttpClient,
@@ -20,12 +20,12 @@ export class VantagensComponent implements OnInit{
   ){}
 
   ngOnInit(){
-    this.empresaID = JSON.parse(localStorage.getItem('user') as any);
+    this.user = JSON.parse(localStorage.getItem('user') as any);
   }
 
   exibirVantagens() {
 
-    const url = `http://localhost:8081/api/v1/vatagem/retornaVantagemPorEmpresa/${this.empresaID}`;
+    const url = `http://localhost:8081/api/v1/vatagem/retornaVantagemPorEmpresa/${this.user.id}`;
 
     this.http.get(url).subscribe(response => {
       console.log('res', response)
@@ -43,7 +43,7 @@ export class VantagensComponent implements OnInit{
     const url = 'http://localhost:8080/api/v1/vantagem/criarVantagem';
 
     let vantagemEdit = {
-      'idEmpresa': this.empresaID,
+      'idEmpresa': this.user.id,
       'nome': this.vantagem.nome,
       'descricao': this.vantagem.descricao,
       'valor': this.vantagem.valor,

@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { VantagensComponent } from './vantagens/vantagens.component';
 import { ComprasComponent } from './compras/compras.component';
+import { ShoppingComponent } from './shopping/shopping.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ComprasComponent } from './compras/compras.component';
     UserAlunoComponent,
     TransacoesComponent,
     VantagensComponent,
-    ComprasComponent
+    ComprasComponent,
+    ShoppingComponent
   ],
   imports: [
     BrowserModule,

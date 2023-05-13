@@ -1,0 +1,30 @@
+.list-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .list-group-item {
+    flex-basis: calc(50% - 10px);
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 30% !important;
+  }
+  
+  
+  h1 {
+    color: #ffcc00;
+    text-align: center;
+  }
+  
+  strong {
+    color: #666;
+  }
+  
+  .topo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
