@@ -8,24 +8,19 @@ import { Router } from '@angular/router';
   templateUrl: './professor.component.html',
   styleUrls: ['./professor.component.css']
 })
-export class ProfessorComponent implements OnInit{
+export class ProfessorComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
     public datepipe: DatePipe
-  ){}
+  ) { }
 
   professor: any;
-  profInfos : any
-  transicoes : any
+  transicoes: any
 
   ngOnInit() {
     this.exibirAlunos();
     this.professor = JSON.parse(localStorage.getItem('user') as any);
-    this.profInfos = JSON.parse(localStorage.getItem('prof') as any);
-    this.transicoes = JSON.parse(localStorage.getItem('transicoes') as any);
-    console.log('transicoes: ',this.transicoes)
-    console.log('profIndos: ',this.profInfos)
   }
 
   alunos: any[] = [];
@@ -44,10 +39,14 @@ export class ProfessorComponent implements OnInit{
   }
 
   pontuarAluno(aluno: any, creditos: any) {
-    
-    /*const url = 'http://localhost:8081/api/v1/transacao/realizaTransacao';
+
+    const url = 'http://localhost:8081/api/v1/transacao/realizaTransacao';
     console.log(this.professor.id)
 
+    if (creditos <= 0) {
+      alert('O valor da transferência deve pertercer ao conjuto dos números inteiros positivos')
+      return
+    }
     const body = {
       "id_professor": this.professor.id,
       "id_aluno": aluno.id,
@@ -57,39 +56,12 @@ export class ProfessorComponent implements OnInit{
 
     this.http.post(url, body).subscribe(response => {
       console.log('res', response)
-      this.alunos = response as any[];
+      alert('transação realiado com sucesso')
     }, error => {
       console.log('Erro: ', error);
-    });*/
-    
-    if(this.profInfos === null || this.transicoes === null)
-      return
-    const temp = Number(creditos.value)
-    if(this.profInfos?.creditos < temp){
-      alert('créditos insuficientes')
-      return
-    }
-    this.profInfos.creditos = this.profInfos.creditos - temp
-    const body = {
-      "data" : Date(),
-      "idAluno": aluno.id,
-      "nomeAluno" : aluno?.nome,
-      "nomeProf" : this.profInfos.name,
-      "creditos": temp
-    };
+    });
 
-    this.transicoes.transicoes.push(body)
 
-    console.log(this.transicoes)
-
-    // tacando tudo no local storage
-
-    localStorage.setItem('prof', JSON.stringify(this.profInfos))
-    localStorage.setItem('transicoes', JSON.stringify(this.transicoes))
-    let creditosAluno = JSON.parse(localStorage.getItem('creditosAluno') as any) ?? 0;
-    console.log('creditosAlunos', creditosAluno + temp)
-    localStorage.setItem('creditosAluno', JSON.stringify(creditosAluno + temp))
-    alert("Parece que deu certo")
   }
 
 

@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 export class TransacoesComponent {
 
   transacoes: any[] = [];
+  user : any
 
   constructor(
     private http: HttpClient,
@@ -16,14 +17,10 @@ export class TransacoesComponent {
 
 
   ngOnInit() {
-    const data = JSON.parse(localStorage.getItem('transicoes') as any)
-    const user = JSON.parse(localStorage.getItem('user') as any)
-    const isProfessor = JSON.parse(localStorage.getItem('isProfessor') as any);
-    if(!isProfessor)
-      this.transacoes = data.transicoes.filter((trans : any)=> trans.idAluno === user.id)
-    else
-      this.transacoes = data.transicoes
-    console.log(data.transicoes)
+
+    this.user = JSON.parse(localStorage.getItem('user') as any)
+    console.log(this.user)
+    this.exibirTransacoes()
 
   }
 
@@ -32,11 +29,16 @@ export class TransacoesComponent {
     const user = JSON.parse(localStorage.getItem('user') as any);
 
 
-    const url = `http://localhost:8081/api/v1/transacao/retornaTodasTransacoes/${user.id}`;
+    const url = `http://localhost:8081/api/v1/transacao/retornaTodasTransacoes`;
 
     this.http.get(url).subscribe(response => {
       console.log('res', response)
       this.transacoes = response as any[];
+      console.log(this.transacoes)
+      if(this.user.email === "charles@gmail.com")
+        this.transacoes = this.transacoes.filter(trans => trans.professor.id === this.user.id)
+      else
+        this.transacoes = this.transacoes.filter(trans => trans.aluno.id === this.user.id)
     }, error => {
       console.log('Erro: ', error);
     });
