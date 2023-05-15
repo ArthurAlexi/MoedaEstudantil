@@ -22,23 +22,25 @@ export class ShoppingComponent implements OnInit{
     this.listarVantagens();
   }
 
-  comprar(vantagem: any){
-    const url = `http://localhost:8081/api/v1/compra/criarCompra`;
+  comprar(vantagem: any) {
+    if (this.user.creditos >= vantagem.valor) {
+      const url = `http://localhost:8081/api/v1/compra/criarCompra`;
 
-    let compra = {
-      'idEmpresa': vantagem.empresaID,
-      'idAluno': this.user.id,
-      'valor': vantagem.valor,
-    }
+      let compra = {
+        'idVantagem': vantagem.id,
+        'idAluno': this.user.id,
+        'valor': vantagem.valor,
+      }
 
-    this.http.post(url, compra).subscribe(response => {
-      console.log('res', response)
-      this.atualizarCreditosAluno();
-      alert('Compra realizada com sucesso!');
-    }, error => {
-      console.log('Erro: ', error);
-      alert('Não foi possivel realizar a compra!');
-    });
+      this.http.post(url, compra).subscribe(response => {
+        console.log('res', response)
+        alert('Compra realizada com sucesso!');
+      }, error => {
+        console.log('Erro: ', error);
+        alert('Não foi possivel realizar a compra!');
+      });
+    } else
+      alert('Créditos insuficientes!');
   }
 
   listarVantagens(){
@@ -52,18 +54,4 @@ export class ShoppingComponent implements OnInit{
     });
   }
 
-  atualizarCreditosAluno() {
-    const url = 'http://localhost:8080/api/v1/aluno/alteraAluno';
-
-    let alunoEditado = {
-      ...this.user,
-      'creditos': this.user.creditos,
-    }
-    console.log(alunoEditado)
-    this.http.put(url, alunoEditado).subscribe(response => {
-      console.log('res', response)
-    }, error => {
-      console.log('Erro: ', error);
-    });
-  }
 }

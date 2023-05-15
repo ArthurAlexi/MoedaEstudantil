@@ -25,7 +25,7 @@ export class VantagensComponent implements OnInit{
 
   exibirVantagens() {
 
-    const url = `http://localhost:8081/api/v1/vatagem/retornaVantagemPorEmpresa/${this.user.id}`;
+    const url = `http://localhost:8081/api/v1/vantagem/retornaVantagemPorEmpresa/${this.user.id}`;
 
     this.http.get(url).subscribe(response => {
       console.log('res', response)
