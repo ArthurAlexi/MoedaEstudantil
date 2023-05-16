@@ -25,13 +25,8 @@ public class Curso {
     )
     private Instituicao instituicao;
 
-    public Curso(String id, String nome, Instituicao instituicao) {
+    public Curso(String nome, Instituicao instituicao) {
         this.nome = nome;
         this.instituicao = instituicao;
-
-        if(id != null){
-            this.id = Long.valueOf(id);
-        }
-
     }
 }

@@ -1,13 +1,7 @@
 package com.backend.config;
 
-import com.backend.model.Departamento;
-import com.backend.model.Empresa;
-import com.backend.model.Instituicao;
-import com.backend.model.Professor;
-import com.backend.repository.DepartamentoRepository;
-import com.backend.repository.EmpresaRepository;
-import com.backend.repository.InstituicaoRepository;
-import com.backend.repository.ProfessorRepository;
+import com.backend.model.*;
+import com.backend.repository.*;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
@@ -20,13 +14,16 @@ public class Initialize {
     private final DepartamentoRepository DEPARTAMENTO_REPOSITORY;
     private final EmpresaRepository EMPRESA_REPOSITORY;
 
+    private final CursoRepository CURSO_REPOSITORY;
 
     public Initialize(ProfessorRepository professorRepository, InstituicaoRepository instituicaoRepository,
-                      DepartamentoRepository departamentoRepository, EmpresaRepository empresaRepository){
+                      DepartamentoRepository departamentoRepository, EmpresaRepository empresaRepository,
+                      CursoRepository cursoRepository){
         this.PROFESSOR_REPOSITORY = professorRepository;
         this.INSTITUICAO_REPOSITORY = instituicaoRepository;
         this.DEPARTAMENTO_REPOSITORY = departamentoRepository;
         this.EMPRESA_REPOSITORY = empresaRepository;
+        this.CURSO_REPOSITORY = cursoRepository;
     }
 
     @EventListener(ApplicationStartedEvent.class)
@@ -61,6 +58,13 @@ public class Initialize {
 
         EMPRESA_REPOSITORY.save(
                 empresa
+        );
+
+        CURSO_REPOSITORY.save(
+                new Curso(
+                      "Curso 1",
+                      instituicao
+                )
         );
 
     }
