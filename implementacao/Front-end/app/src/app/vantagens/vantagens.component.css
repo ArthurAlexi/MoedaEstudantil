@@ -71,3 +71,9 @@
     flex-direction: column;
     gap: 10px;
   }
+
+  .foto {
+    width: 20px; 
+    height: 20px; 
+    float: right;
+  }

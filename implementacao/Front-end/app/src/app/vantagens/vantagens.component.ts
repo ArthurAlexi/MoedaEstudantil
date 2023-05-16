@@ -47,6 +47,7 @@ export class VantagensComponent implements OnInit{
       'nome': this.vantagem.nome,
       'descricao': this.vantagem.descricao,
       'valor': this.vantagem.valor,
+      'foto': this.vantagem.foto,
     }
     console.log(vantagemEdit)
 
