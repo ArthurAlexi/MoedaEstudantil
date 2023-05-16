@@ -4,7 +4,7 @@
   <div class="container text-center">
     <button class="btn btn-danger" (click)="logout()"><- Sair</button>
     <a href="/transacoes"><button class="btn btn-info" style="color: white;">Minhas transações</button></a>
-    <a href="/transacoes"><button class="btn btn-warning">$ Comprar vantagem $</button></a>
+    <a href="/shopping"><button class="btn btn-warning">$ Comprar vantagem $</button></a>
     <h1>Informações do Aluno</h1>
     <p><strong>Nome:</strong> {{ aluno.nome }}</p>
     <p><strong>Curso:</strong> {{ aluno.curso.nome }}</p>
@@ -34,7 +34,7 @@
 <div  *ngIf="aluno?.cnpj">
   <div class="container text-center">
     <button class="btn btn-danger" (click)="logout()"> <- Sair </button>
-    <a href="/vantagens"><button class="btn btn-warning" (click)="logout()">Minhas Vantagens</button></a>
+    <a href="/vantagens"><button class="btn btn-warning">Minhas Vantagens</button></a>
     <h1>Informações da empresa</h1>
     <p><strong>Nome:</strong> {{ aluno.nome }}</p>
     <p><strong>email:</strong> {{ aluno.email }}</p>

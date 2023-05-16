@@ -35,12 +35,8 @@ export class AlunoComponent {
       "email": email,
       "endereco" : endereco,
       "rg": rg,
-      "curso": {
-        "nome" : curso,
-        "instituicao" : {
-          "nome" : "puc"
-        }
-      }
+      "creditos": 0,
+      "curso": 1
     };
     console.log(body)
     this.http.post(url, body).subscribe(response => {

@@ -10,6 +10,7 @@ import { ProfessorComponent } from './professor/professor.component';
 import { TransacoesComponent } from './transacoes/transacoes.component';
 import { VantagensComponent } from './vantagens/vantagens.component';
 import { ComprasComponent } from './compras/compras.component';
+import { ShoppingComponent } from './shopping/shopping.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'transacoes', component: TransacoesComponent},
   {path: 'vantagens', component: VantagensComponent},
   {path: 'compras', component: ComprasComponent},
+  {path: 'shopping', component: ShoppingComponent},
   {path: '', redirectTo: 'home', pathMatch:'full'}
 ];
 
