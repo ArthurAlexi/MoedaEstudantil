@@ -17,8 +17,8 @@
     <form (submit)="cadastrarVantagem()">
       <input [(ngModel)]="vantagem.nome" name="nome" placeholder="Nome" required>
       <input [(ngModel)]="vantagem.descricao" name="descricao" placeholder="Descrição" required>
-      <input [(ngModel)]="vantagem.preco" name="preco" placeholder="Valor" required>
-      <input [(ngModel)]="vantagem.foto" name="foto" placeholder="Link para foto" required>
+      <input [(ngModel)]="vantagem.valor" name="valor" placeholder="Valor" required>
+      <input [(ngModel)]="vantagem.foto" type="text" name="foto" placeholder="Link para foto" required>
       <button type="submit" class="btn btn-warning mt-3">Salvar</button>
       <button type="button" (click)="fecharModal()" class="btn btn-danger mt-3">Cancelar</button>
     </form>

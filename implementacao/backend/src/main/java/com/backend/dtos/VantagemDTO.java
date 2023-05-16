@@ -8,7 +8,9 @@ public record VantagemDTO(
 
         String descricao,
 
-        Double valor
+        Double valor,
+
+        String foto
 
 
 ) {

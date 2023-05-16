@@ -21,6 +21,7 @@ export class VantagensComponent implements OnInit{
 
   ngOnInit(){
     this.user = JSON.parse(localStorage.getItem('user') as any);
+    this.exibirVantagens();
   }
 
   exibirVantagens() {
@@ -40,15 +41,16 @@ export class VantagensComponent implements OnInit{
   }
 
   cadastrarVantagem() {    
-    const url = 'http://localhost:8080/api/v1/vantagem/criarVantagem';
+    const url = 'http://localhost:8081/api/v1/vantagem/criarVantagem';
 
     let vantagemEdit = {
       'idEmpresa': this.user.id,
       'nome': this.vantagem.nome,
       'descricao': this.vantagem.descricao,
       'valor': this.vantagem.valor,
-      'foto': this.vantagem.foto,
+      'foto': this.vantagem.foto
     }
+
     console.log(vantagemEdit)
 
     this.http.post(url, vantagemEdit).subscribe(response => {
