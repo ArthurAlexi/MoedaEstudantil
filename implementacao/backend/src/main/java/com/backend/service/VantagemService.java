@@ -62,4 +62,12 @@ public class VantagemService {
         return ResponseEntity.ok(vantagens);
 
     }
+
+    public ResponseEntity<?> retornaTodasVantagens(){
+
+        List<Vantagem> vantagens = VANTAGEM_REPOSITORY.findAll();
+
+        return ResponseEntity.ok().body(vantagens);
+
+    }
 }
