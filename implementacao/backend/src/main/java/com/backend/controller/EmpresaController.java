@@ -1,12 +1,11 @@
 package com.backend.controller;
 
-import com.backend.model.Empresa;
+import com.backend.dtos.EmpresaAlteradaDTO;
+import com.backend.dtos.EmpresaDTO;
 import com.backend.service.EmpresaService;
-import net.minidev.json.JSONObject;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 @RestController
 @RequestMapping("/api/v1/empresa/")
@@ -20,11 +19,9 @@ public class EmpresaController {
     }
 
     @PostMapping("insereEmpresa")
-    public ResponseEntity<?> insereEmpresa(@RequestBody JSONObject empresa){
+    public ResponseEntity<?> insereEmpresa(@RequestBody EmpresaDTO empresa){
 
-        Empresa empresa_enviar = EMPRESA_SERVICE.fabricaEmpresa(empresa);
-
-        return EMPRESA_SERVICE.insereEmpresa(empresa_enviar);
+        return EMPRESA_SERVICE.insereEmpresa(empresa);
 
     }
 
@@ -36,7 +33,7 @@ public class EmpresaController {
     }
 
     @GetMapping(value = "retornaEmpresaPeloId/{id}",
-    produces = MediaType.APPLICATION_JSON_VALUE)
+            produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> retornaEmpresaPeloId(@PathVariable Long id){
 
         return EMPRESA_SERVICE.retornaEmpresaPeloId(id);
@@ -45,14 +42,14 @@ public class EmpresaController {
 
     @DeleteMapping(value = "deletaEmpresaPeloId/{id}")
     public ResponseEntity<?> deletaEmpresaPeloId(@PathVariable Long id){
+
         return EMPRESA_SERVICE.deletaEmpresaPeloId(id);
     }
 
     @PutMapping(value = "alteraEmpresa")
-    public ResponseEntity<?> alteraEmpresa(@RequestBody JSONObject empresa){
+    public ResponseEntity<?> alteraEmpresa(@RequestBody EmpresaAlteradaDTO empresa){
 
-        Empresa empresa_enviar = EMPRESA_SERVICE.fabricaEmpresa(empresa);
-
-        return EMPRESA_SERVICE.alteraEmpresa(empresa_enviar);
+        return EMPRESA_SERVICE.alteraEmpresa(empresa);
     }
+
 }

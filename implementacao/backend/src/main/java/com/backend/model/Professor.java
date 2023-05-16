@@ -22,7 +22,7 @@ public class Professor extends Pessoa{
         this.departamento = new Departamento("Dep");
     }
 
-    public Professor(String id, String email, String senha, String nome, String cpf, String creditos, Departamento departamento) {
+    public Professor(Long id, String email, String senha, String nome, String cpf, Double creditos, Departamento departamento) {
         super(id, email, senha, nome, cpf, creditos);
         this.departamento = departamento;
     }

@@ -23,12 +23,10 @@ public class Empresa extends Usuario{
 
     /* Constructor */
 
-    public Empresa(String id, String email, String senha, String nome, String cnpj, Instituicao instituicao) {
-        super(id, email, senha);
+    public Empresa(String email, String senha, String nome, String cnpj, Instituicao instituicao) {
+        super(email, senha);
         this.nome = nome;
         this.cnpj = cnpj;
         this.instituicao = instituicao;
     }
-
-
 }

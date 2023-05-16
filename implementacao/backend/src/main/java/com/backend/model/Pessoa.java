@@ -17,17 +17,17 @@ public abstract class Pessoa extends Usuario {
 
     private Double creditos;
 
-    public Pessoa(String id, String email, String senha, String nome, String cpf, String creditos) {
+    public Pessoa(String email, String senha, String nome, String cpf, Double creditos) {
+        super(email, senha);
+        this.nome = nome;
+        this.cpf = cpf;
+        this.creditos = creditos;
+    }
+
+    public Pessoa(Long id, String email, String senha, String nome, String cpf, Double creditos){
         super(id, email, senha);
         this.nome = nome;
         this.cpf = cpf;
-
-        if(creditos != null){
-            this.creditos = Double.valueOf(creditos);
-        }else{
-            this.creditos = 0.0;
-        }
-
-
+        this.creditos = creditos;
     }
 }

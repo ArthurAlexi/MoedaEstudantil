@@ -23,12 +23,7 @@ public abstract class Usuario {
     private String senha;
 
 
-    public Usuario(String id, String email, String senha) {
-
-        if(id != null){
-            this.id = Long.valueOf(id);
-        }
-
+    public Usuario(String email, String senha) {
         this.email = email;
         this.senha = senha;
     }

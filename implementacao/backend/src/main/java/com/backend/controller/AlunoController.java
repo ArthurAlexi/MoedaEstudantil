@@ -1,8 +1,8 @@
 package com.backend.controller;
 
-import com.backend.model.Aluno;
+import com.backend.dtos.AlunoAlteradoDTO;
+import com.backend.dtos.AlunoDTO;
 import com.backend.service.AlunoService;
-import net.minidev.json.JSONObject;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,11 +19,9 @@ public class AlunoController {
     }
 
     @PostMapping("insereAluno")
-    public ResponseEntity<?> insereAluno(@RequestBody JSONObject aluno){
+    public ResponseEntity<?> insereAluno(@RequestBody AlunoDTO aluno){
 
-        Aluno aluno_inserir = ALUNO_SERVICE.fabricaAluno(aluno);
-
-        return ALUNO_SERVICE.insereAluno(aluno_inserir);
+        return ALUNO_SERVICE.insereAluno(aluno);
 
     }
 
@@ -48,12 +46,11 @@ public class AlunoController {
     }
 
     @PutMapping(value = "alteraAluno")
-    public ResponseEntity<?> alteraAluno(@RequestBody JSONObject aluno){
+    public ResponseEntity<?> alteraAluno(@RequestBody AlunoAlteradoDTO alunoDto){
 
-        Aluno aluno_enviar = ALUNO_SERVICE.fabricaAluno(aluno);
-
-        return ALUNO_SERVICE.alteraAluno(aluno_enviar);
+        return ALUNO_SERVICE.alteraAluno(alunoDto);
     }
+
 
 
 }

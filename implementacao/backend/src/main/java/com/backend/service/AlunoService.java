@@ -1,79 +1,105 @@
 package com.backend.service;
 
-import com.backend.dtos.UsuarioDTO;
+import com.backend.dtos.AlunoAlteradoDTO;
+import com.backend.dtos.AlunoDTO;
+import com.backend.mapper.AlunoMapper;
 import com.backend.model.Aluno;
 import com.backend.model.Curso;
-import com.backend.model.Empresa;
-import com.backend.model.Instituicao;
 import com.backend.repository.AlunoRepository;
-import com.backend.utils.Dictionary;
-import net.minidev.json.JSONObject;
+import com.backend.repository.CursoRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedHashMap;
-
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AlunoService {
 
-    private final ServiceGeral SERVICE;
+    private final AlunoRepository alunoRepository;
 
-    private final AlunoRepository ALUNO_REPOSITORY;
+    private final CursoRepository cursoRepository;
 
-    public AlunoService(ServiceGeral serviceGeral, AlunoRepository alunoRepository) {
-        this.SERVICE = serviceGeral;
-        this.ALUNO_REPOSITORY = alunoRepository;
+    public AlunoService(AlunoRepository alunoRepository, CursoRepository cursoRepository) {
+        this.alunoRepository = alunoRepository;
+        this.cursoRepository = cursoRepository;
     }
 
-    public ResponseEntity<?> insereAluno(Aluno aluno){
-        return SERVICE.insereObjeto(aluno, Dictionary.ALUNO);
+    public ResponseEntity<?> insereAluno(AlunoDTO alunoDTO){
+
+        Curso curso;
+
+        if(alunoDTO.id_curso() != null){
+            curso = cursoRepository.getReferenceById(alunoDTO.id_curso());
+        }else{
+            curso = cursoRepository.getReferenceById(1L);
+        }
+
+        Aluno aluno = AlunoMapper.alunoMapper(alunoDTO, curso);
+
+        alunoRepository.save(aluno);
+
+        return ResponseEntity.ok(aluno.getId());
+
     }
 
     public ResponseEntity<?> retornaTodosAlunos(){
-        return SERVICE.retornaTodosObjetos(Dictionary.ALUNO);
+
+        List<Aluno> alunos = alunoRepository.findAll();
+
+        return ResponseEntity.ok(alunos);
+
     }
 
     public ResponseEntity<?> retornaAlunoPeloId(Long id){
-        return SERVICE.retornaObjetoPeloId(id, Dictionary.ALUNO);
+
+        Optional<Aluno> aluno = alunoRepository.findById(id);
+
+        if(aluno.isPresent()){
+            return ResponseEntity.ok(aluno.get());
+        }else{
+            return ResponseEntity.badRequest().body("Aluno não existe");
+        }
     }
 
     public ResponseEntity<?> deletaAlunoPeloId(Long id){
-        return SERVICE.excluiObjeto(id, Dictionary.ALUNO);
-    }
 
-    public ResponseEntity<?> alteraAluno(Aluno aluno){
-        return SERVICE.alteraObjeto(aluno, Dictionary.ALUNO);
-    }
+        Optional<Aluno> aluno = alunoRepository.findById(id);
 
-    /* Util */
+        if(aluno.isPresent()){
 
-    public Aluno fabricaAluno(JSONObject aluno){
+            Aluno aluno_get = aluno.get();
 
-        LinkedHashMap<?, ?> curso = ((LinkedHashMap<?, ?>) aluno.get("curso"));
-        LinkedHashMap<?, ?> instituicao = (LinkedHashMap<?, ?>) curso.get("instituicao");
+            alunoRepository.delete(aluno_get);
 
-        return new Aluno(
-                (String) aluno.get("id"),
-                (String) aluno.get("email"),
-                (String) aluno.get("senha"),
-                (String) aluno.get("nome"),
-                (String) aluno.get("cpf"),
-                (String) aluno.get("creditos"),
-                (String) aluno.get("rg"),
-                (String) aluno.get("endereco"),
-                new Curso(
-                        (String) curso.get("id"),
-                        (String) curso.get("nome"),
-                            new Instituicao((String) instituicao.get("nome"),
-                                            (String) instituicao.get("id"))
+            return ResponseEntity.ok(aluno_get);
 
-                )
-
-        );
+        }else{
+            return ResponseEntity.badRequest().body("Aluno não existe");
+        }
 
     }
 
+    public ResponseEntity<?> alteraAluno(AlunoAlteradoDTO alunoDTO){
 
+        Optional<Aluno> aluno = alunoRepository.findById(alunoDTO.id_aluno());
+
+        if(aluno.isEmpty()){
+            return ResponseEntity.badRequest().body("Aluno não existe");
+        }
+
+        Aluno aluno_get = aluno.get();
+
+        Aluno aluno_salvar = AlunoMapper.alunoMapper(alunoDTO, aluno_get);
+
+        if(aluno_get.equals(aluno_salvar)){
+            return ResponseEntity.badRequest().body("Não há mudanças no aluno");
+        }
+
+        alunoRepository.saveAndFlush(aluno_salvar);
+
+        return ResponseEntity.ok(aluno_salvar.getId());
+
+    }
 
 }
