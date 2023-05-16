@@ -13,7 +13,6 @@ public class Initialize {
     private final ProfessorRepository PROFESSOR_REPOSITORY;
     private final DepartamentoRepository DEPARTAMENTO_REPOSITORY;
     private final EmpresaRepository EMPRESA_REPOSITORY;
-
     private final CursoRepository CURSO_REPOSITORY;
 
     public Initialize(ProfessorRepository professorRepository, InstituicaoRepository instituicaoRepository,
@@ -60,12 +59,12 @@ public class Initialize {
                 empresa
         );
 
-        CURSO_REPOSITORY.save(
-                new Curso(
-                      "Curso 1",
-                      instituicao
-                )
+        Curso curso =  new Curso(
+                "Curso 1",
+                instituicao
         );
+
+        CURSO_REPOSITORY.save(curso);
 
     }
 

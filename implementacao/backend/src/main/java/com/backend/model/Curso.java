@@ -18,11 +18,7 @@ public class Curso {
 
     private String nome;
 
-    @ManyToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
-            targetEntity = Instituicao.class
-    )
+    @ManyToOne
     private Instituicao instituicao;
 
     public Curso(String nome, Instituicao instituicao) {
