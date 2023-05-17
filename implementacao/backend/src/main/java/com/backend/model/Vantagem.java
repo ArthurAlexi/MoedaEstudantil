@@ -32,9 +32,10 @@ public class Vantagem {
         this.valor = valor;
     }
 
-    public Vantagem(String descricao, Double valor, Empresa empresa) {
+    public Vantagem(String descricao, Double valor, String foto, Empresa empresa) {
         this.descricao = descricao;
         this.valor = valor;
         this.empresa = empresa;
+        this.foto = foto;
     }
 }

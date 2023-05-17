@@ -51,7 +51,7 @@ export class VantagensComponent implements OnInit{
       'foto': this.vantagem.foto
     }
 
-    console.log(vantagemEdit)
+    console.log(this.vantagem.foto)
 
     this.http.post(url, vantagemEdit).subscribe(response => {
       console.log('res', response)

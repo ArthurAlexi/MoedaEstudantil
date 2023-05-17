@@ -10,7 +10,7 @@
     <strong>Curso:</strong> {{ aluno?.curso?.nome }}<br>
     <strong>Instituição:</strong> {{ aluno?.curso?.instituicao?.nome }}<br>
     <div class="input-group mb-3">
-      <input class="form-control" type="number" min="0" name="creditos" placeholder="Quantidade de creditos" #creditos>
+      <input class="form-control" type="number" name="creditos" placeholder="Quantidade de creditos" #creditos>
       <div class="input-group-append">
         <button class="btn btn-warning" type="button" (click)="pontuarAluno(aluno, creditos)">Pontuar aluno</button>
       </div>

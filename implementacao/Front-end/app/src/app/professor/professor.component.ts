@@ -21,6 +21,7 @@ export class ProfessorComponent implements OnInit {
   ngOnInit() {
     this.exibirAlunos();
     this.professor = JSON.parse(localStorage.getItem('user') as any);
+    console.log(this.professor)
   }
 
   alunos: any[] = [];
@@ -43,10 +44,16 @@ export class ProfessorComponent implements OnInit {
     const url = 'http://localhost:8081/api/v1/transacao/realizaTransacao';
     console.log(this.professor.id)
 
-    if (creditos <= 0) {
-      alert('O valor da transferência deve pertercer ao conjuto dos números inteiros positivos')
+    if (creditos.value <= 0) {
+      alert('O valor da transferência deve ser positivo')
       return
     }
+
+    if (this.professor.creditos < creditos.value) {
+      alert('Créditos insuficientes!')
+      return
+    }
+
     const body = {
       "id_professor": this.professor.id,
       "id_aluno": aluno.id,
