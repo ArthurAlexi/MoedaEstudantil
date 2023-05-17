@@ -19,7 +19,7 @@ public class Aluno extends Pessoa{
     @ManyToOne
     private Curso curso;
 
-    public Aluno(String email, String senha, String nome, String cpf, Double creditos,
+    public Aluno(String email, String senha, String nome, String cpf, double creditos,
                  String rg, String endereco, Curso curso) {
         super(email, senha, nome, cpf, creditos);
         this.rg = rg;

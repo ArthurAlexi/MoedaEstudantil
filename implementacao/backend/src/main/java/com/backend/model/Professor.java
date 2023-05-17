@@ -17,12 +17,12 @@ public class Professor extends Pessoa{
     @ManyToOne
     private Departamento departamento;
 
-    public Professor(String nome, String cpf, Double creditos) {
+    public Professor(String nome, String cpf, double creditos) {
         super(nome, cpf, creditos);
         this.departamento = new Departamento("Dep");
     }
 
-    public Professor(Long id, String email, String senha, String nome, String cpf, Double creditos, Departamento departamento) {
+    public Professor(Long id, String email, String senha, String nome, String cpf, double creditos, Departamento departamento) {
         super(id, email, senha, nome, cpf, creditos);
         this.departamento = departamento;
     }

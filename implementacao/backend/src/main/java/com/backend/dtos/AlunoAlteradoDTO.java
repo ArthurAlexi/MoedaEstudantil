@@ -7,7 +7,7 @@ public record AlunoAlteradoDTO(
         String senha,
         String nome,
         String cpf,
-        Double creditos,
+        double creditos,
         String rg,
         String endereco
 

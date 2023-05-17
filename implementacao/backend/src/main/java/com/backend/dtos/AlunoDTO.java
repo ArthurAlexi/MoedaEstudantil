@@ -5,7 +5,7 @@ public record AlunoDTO(
         String senha,
         String nome,
         String cpf,
-        Double creditos,
+        double creditos,
         String rg,
         String endereco,
         Long id_curso

@@ -14,15 +14,17 @@ public class Initialize {
     private final DepartamentoRepository DEPARTAMENTO_REPOSITORY;
     private final EmpresaRepository EMPRESA_REPOSITORY;
     private final CursoRepository CURSO_REPOSITORY;
+    private final AlunoRepository ALUNO_REPOSITORY;
 
     public Initialize(ProfessorRepository professorRepository, InstituicaoRepository instituicaoRepository,
                       DepartamentoRepository departamentoRepository, EmpresaRepository empresaRepository,
-                      CursoRepository cursoRepository){
+                      CursoRepository cursoRepository, AlunoRepository alunoRepository){
         this.PROFESSOR_REPOSITORY = professorRepository;
         this.INSTITUICAO_REPOSITORY = instituicaoRepository;
         this.DEPARTAMENTO_REPOSITORY = departamentoRepository;
         this.EMPRESA_REPOSITORY = empresaRepository;
         this.CURSO_REPOSITORY = cursoRepository;
+        this.ALUNO_REPOSITORY = alunoRepository;
     }
 
     @EventListener(ApplicationStartedEvent.class)
@@ -65,6 +67,22 @@ public class Initialize {
         );
 
         CURSO_REPOSITORY.save(curso);
+
+        Aluno aluno = new Aluno(
+
+                "email@aluno.com",
+                "senhaAluno",
+                "Aluno",
+                "123456789",
+                1.0,
+                "123456",
+                "rua x",
+                curso
+        );
+
+        ALUNO_REPOSITORY.save(aluno);
+
+
 
     }
 

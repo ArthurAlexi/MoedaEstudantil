@@ -20,7 +20,7 @@ public class Vantagem {
 
     private String foto;
 
-    private Double valor;
+    private double valor;
 
     @ManyToOne
     private Empresa empresa;
