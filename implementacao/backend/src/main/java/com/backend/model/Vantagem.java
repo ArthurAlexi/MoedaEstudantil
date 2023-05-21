@@ -20,6 +20,8 @@ public class Vantagem {
 
     private String foto;
 
+    private String nome;
+
     private double valor;
 
     @ManyToOne
@@ -32,10 +34,11 @@ public class Vantagem {
         this.valor = valor;
     }
 
-    public Vantagem(String descricao, Double valor, String foto, Empresa empresa) {
+    public Vantagem(String descricao, Double valor, String foto, String nome, Empresa empresa) {
         this.descricao = descricao;
         this.valor = valor;
         this.empresa = empresa;
         this.foto = foto;
+        this.nome = nome;
     }
 }

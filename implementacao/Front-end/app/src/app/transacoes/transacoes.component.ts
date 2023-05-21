@@ -26,9 +26,6 @@ export class TransacoesComponent {
 
   exibirTransacoes() {
 
-    const user = JSON.parse(localStorage.getItem('user') as any);
-
-
     const url = `http://localhost:8081/api/v1/transacao/retornaTodasTransacoes`;
 
     this.http.get(url).subscribe(response => {

@@ -13,6 +13,7 @@ public class VantagemMapper {
                 vantagemDTO.descricao(),
                 vantagemDTO.valor(),
                 vantagemDTO.foto(),
+                vantagemDTO.nome(),
                 empresa
 
         );

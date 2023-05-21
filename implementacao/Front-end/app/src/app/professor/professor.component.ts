@@ -61,6 +61,8 @@ export class ProfessorComponent implements OnInit {
       "valor": creditos.value,
     };
 
+    this.professor.creditos = this.professor.creditos - creditos.value;
+
     this.http.post(url, body).subscribe(response => {
       console.log('res', response)
       alert('transação realiado com sucesso')
