@@ -36,10 +36,8 @@ export class TransacoesComponent {
         this.transacoes = this.transacoes.filter(trans => trans.professor.id === this.user.id)
       else
         this.transacoes = this.transacoes.filter(trans => trans.aluno.id === this.user.id)
-
-      for(let i=0;this.transacoes.length > 0;i++){
-        this.user.creditos -= this.transacoes[i].valor;
-      }
+        
+      console.log(this.user.creditos)
     }, error => {
       console.log('Erro: ', error);
     });

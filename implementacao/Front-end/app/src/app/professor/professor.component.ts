@@ -61,7 +61,8 @@ export class ProfessorComponent implements OnInit {
       "valor": creditos.value,
     };
 
-    this.professor.creditos = this.professor.creditos - creditos.value;
+    this.professor.creditos -= creditos.value;
+    localStorage.setItem('user', JSON.stringify(this.professor));
 
     this.http.post(url, body).subscribe(response => {
       console.log('res', response)

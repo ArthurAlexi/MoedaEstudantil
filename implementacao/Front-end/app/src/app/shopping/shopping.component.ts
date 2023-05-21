@@ -32,7 +32,8 @@ export class ShoppingComponent implements OnInit{
         'valor': vantagem.valor,
       }
 
-      this.user.creditos = this.user.creditos - vantagem.valor;
+      this.user.creditos -= vantagem.valor;
+      localStorage.setItem('user', JSON.stringify(this.user));
 
 
       this.http.post(url, compra).subscribe(response => {
