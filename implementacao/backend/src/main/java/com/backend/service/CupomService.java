@@ -42,7 +42,18 @@ public class CupomService {
 
         Cupom cupom = CupomMapper.mapperCupom(aluno, vantagem);
 
+        double creditos_aluno = aluno.getCreditos();
+        double valor_cupom = vantagem.getValor();
+
+
+        if(creditos_aluno < valor_cupom){
+            return ResponseEntity.badRequest().body("Aluno não possui créditos para o Cupom");
+        }
+
+        aluno.setCreditos((creditos_aluno - valor_cupom));
+        
         cupomRepository.save(cupom);
+        alunoRepository.saveAndFlush(aluno);
 
         return ResponseEntity.ok(cupom);
 
