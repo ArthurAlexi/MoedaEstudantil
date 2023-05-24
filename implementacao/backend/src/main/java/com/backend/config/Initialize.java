@@ -2,9 +2,14 @@ package com.backend.config;
 
 import com.backend.model.*;
 import com.backend.repository.*;
+import jakarta.mail.Authenticator;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
+
+import java.util.Properties;
 
 @Configuration
 public class Initialize {
@@ -15,16 +20,23 @@ public class Initialize {
     private final EmpresaRepository EMPRESA_REPOSITORY;
     private final CursoRepository CURSO_REPOSITORY;
     private final AlunoRepository ALUNO_REPOSITORY;
+    private final CupomRepository CUPOM_REPOSITORY;
+    private final VantagemRepository VANTAGEM_REPOSITORY;
+
+    private static Properties properties;
 
     public Initialize(ProfessorRepository professorRepository, InstituicaoRepository instituicaoRepository,
                       DepartamentoRepository departamentoRepository, EmpresaRepository empresaRepository,
-                      CursoRepository cursoRepository, AlunoRepository alunoRepository){
+                      CursoRepository cursoRepository, AlunoRepository alunoRepository, CupomRepository cupomRepository,
+                      VantagemRepository vantagemRepository){
         this.PROFESSOR_REPOSITORY = professorRepository;
         this.INSTITUICAO_REPOSITORY = instituicaoRepository;
         this.DEPARTAMENTO_REPOSITORY = departamentoRepository;
         this.EMPRESA_REPOSITORY = empresaRepository;
         this.CURSO_REPOSITORY = cursoRepository;
         this.ALUNO_REPOSITORY = alunoRepository;
+        this.CUPOM_REPOSITORY = cupomRepository;
+        this.VANTAGEM_REPOSITORY = vantagemRepository;
     }
 
     @EventListener(ApplicationStartedEvent.class)
@@ -70,11 +82,11 @@ public class Initialize {
 
         Aluno aluno = new Aluno(
 
-                "email@aluno.com",
+                "pabloaugustocm@gmail.com",
                 "senhaAluno",
                 "Aluno",
                 "123456789",
-                1.0,
+                100.0,
                 "123456",
                 "rua x",
                 curso
@@ -82,8 +94,44 @@ public class Initialize {
 
         ALUNO_REPOSITORY.save(aluno);
 
+        Vantagem vantagem = new Vantagem(
+                "desc",
+                1.0,
+                "https://example.org",
+                "name",
+                empresa
+        );
+
+        VANTAGEM_REPOSITORY.save(vantagem);
+
 
 
     }
 
+    @EventListener(ApplicationStartedEvent.class)
+    public void defineProperties(){
+
+        Properties prop = new Properties();
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true");
+        prop.put("mail.smtp.host", "smtp-mail.outlook.com");
+        prop.put("mail.smtp.port", "587");
+
+        properties = prop;
+
+    }
+
+    public static Session retornaSession(){
+
+        return Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(
+                        "moeda_estudantil_teste@outlook.com",
+                        "@MoedaEstudantil_LabTeste@"
+                );
+            }
+        });
+
+    }
 }

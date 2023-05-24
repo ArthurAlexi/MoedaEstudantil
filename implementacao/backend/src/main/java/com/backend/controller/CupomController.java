@@ -25,4 +25,11 @@ public class CupomController {
 
     }
 
+    @GetMapping("getCupomByAlunoID/{id}")
+    public ResponseEntity<?> getCupom(
+            @PathVariable Long id
+    ){
+        return cupomService.getCupomByAlunoID(id);
+    }
+
 }

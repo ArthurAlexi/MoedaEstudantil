@@ -11,6 +11,9 @@ import com.backend.repository.VantagemRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CupomService {
 
@@ -20,10 +23,14 @@ public class CupomService {
 
     private final VantagemRepository vantagemRepository;
 
-    public CupomService(CupomRepository cupomRepository, AlunoRepository alunoRepository, VantagemRepository vantagemRepository) {
+    private final MailService mailService;
+
+    public CupomService(CupomRepository cupomRepository, AlunoRepository alunoRepository,
+                        VantagemRepository vantagemRepository, MailService mailService) {
         this.cupomRepository = cupomRepository;
         this.alunoRepository = alunoRepository;
         this.vantagemRepository = vantagemRepository;
+        this.mailService = mailService;
     }
 
     public ResponseEntity<?> criarCupom(CupomDTO cupomDTO){
@@ -51,13 +58,28 @@ public class CupomService {
         }
 
         aluno.setCreditos((creditos_aluno - valor_cupom));
-        
+
         cupomRepository.save(cupom);
         alunoRepository.saveAndFlush(aluno);
+
+        mailService.sendMessage(aluno.getEmail(),
+                "Você acabou de resgatar um cupom no valor de: " + valor_cupom);
 
         return ResponseEntity.ok(cupom);
 
 
     }
 
+    public ResponseEntity<?> getCupomByAlunoID(Long id_aluno){
+
+        Optional<Aluno> aluno = alunoRepository.findById(id_aluno);
+
+        if(aluno.isEmpty()){
+            return ResponseEntity.badRequest().body("Aluno não existe");
+        }
+
+        List<Cupom> cupons_aluno = cupomRepository.retornaCuponsAluno(id_aluno);
+
+        return ResponseEntity.ok(cupons_aluno);
+    }
 }
