@@ -17,6 +17,15 @@
     </li>
   </ul>
 
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let cupom of cupons">
+      <strong>Data:</strong> {{ cupom?.data | date : 'dd/MM/yyyy HH:mm'}}<br>
+      <strong>Aluno:</strong> {{ cupom?.aluno.nome }}<br>
+      <strong>Vantagem:</strong> {{ cupom?.vantagem.nome }}<br>
+      <strong>Valor da transação:</strong> {{ cupom?.valor }}<br>
+    </li>
+  </ul>
+
   <div class="alert alert-light col-4 offset-4 mt-4 " role="alert">
     <strong style="color: black;">total de créditos {{ user.creditos }} </strong>
   </div>

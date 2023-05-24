@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 export class TransacoesComponent {
 
   transacoes: any[] = [];
+  cupons: any[] = [];
   user : any
 
   constructor(
@@ -26,19 +27,32 @@ export class TransacoesComponent {
 
   exibirTransacoes() {
 
-    const url = `http://localhost:8081/api/v1/transacao/retornaTodasTransacoes`;
+    let url = `http://localhost:8081/api/v1/transacao/retornaTodasTransacoes`;
 
     this.http.get(url).subscribe(response => {
       console.log('res', response)
       this.transacoes = response as any[];
       console.log(this.transacoes)
       if(this.user.email === "charles@gmail.com")
-        this.transacoes = this.transacoes.filter(trans => trans.professor.id === this.user.id)
+        this.transacoes = this.transacoes.filter(trans => trans.professor.id === this.user.id);
       else
-        this.transacoes = this.transacoes.filter(trans => trans.aluno.id === this.user.id)
-        
+        this.transacoes = this.transacoes.filter(trans => trans.aluno.id === this.user.id);        
       console.log(this.user.creditos)
     }, error => {
+      console.log('Erro: ', error);
+    });
+  }
+
+  exibirCupons() {
+
+    let url = `http://localhost:8081/api/v1/cupom/getCupomByAlunoID/${this.user.id}`;
+
+    this.http.get(url).subscribe(response => {
+      console.log('res', response)
+      this.cupons = response as any[];
+      console.log(this.cupons)
+    }, error => {
+      this.cupons = [];
       console.log('Erro: ', error);
     });
   }
