@@ -19,9 +19,10 @@ export class TransacoesComponent {
 
   ngOnInit() {
 
-    this.user = JSON.parse(localStorage.getItem('user') as any)
-    console.log(this.user)
-    this.exibirTransacoes()
+    this.user = JSON.parse(localStorage.getItem('user') as any);
+    console.log(this.user);
+    this.exibirTransacoes();
+    this.exibirCupons();
 
   }
 
