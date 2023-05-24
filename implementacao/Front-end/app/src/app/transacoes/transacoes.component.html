@@ -19,10 +19,9 @@
 
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let cupom of cupons">
-      <strong>Data:</strong> {{ cupom?.data | date : 'dd/MM/yyyy HH:mm'}}<br>
       <strong>Aluno:</strong> {{ cupom?.aluno.nome }}<br>
       <strong>Vantagem:</strong> {{ cupom?.vantagem.nome }}<br>
-      <strong>Valor da transação:</strong> {{ cupom?.valor }}<br>
+      <strong>Valor da transação:</strong> {{ cupom?.vantagem.valor }}<br>
     </li>
   </ul>
 
