@@ -14,6 +14,7 @@
       <strong>Aluno:</strong> {{ transacao?.aluno.nome }}<br>
       <strong>Professor:</strong> {{ transacao?.professor.nome }}<br>
       <strong>Valor da transação:</strong> {{ transacao?.valor }}<br>
+      <button type="button" class="btn btn-primary btn-sm" (click)="gerarPdfTrans(transacao?.id)">Gerar pdf</button><br>
     </li>
   </ul>
 
@@ -22,9 +23,14 @@
       <strong>Aluno:</strong> {{ cupom?.aluno.nome }}<br>
       <strong>Vantagem:</strong> {{ cupom?.vantagem.nome }}<br>
       <strong>Valor da transação:</strong> {{ cupom?.vantagem.valor }}<br>
+      <button type="button" class="btn btn-primary btn-sm" (click)="gerarPdfCupom(cupom?.id)">Gerar pdf</button><br>
     </li>
   </ul>
 
   <div class="alert alert-light col-4 offset-4 mt-4 " role="alert">
     <strong style="color: black;">total de créditos {{ user.creditos }} </strong>
+  </div>
+
+  <div class="offset-10">
+    <button type="button" class="btn btn-primary" (click)="gerarPdf()">Gerar PDF do extrato</button>
   </div>

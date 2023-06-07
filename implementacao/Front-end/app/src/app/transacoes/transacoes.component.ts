@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-transacoes',
   templateUrl: './transacoes.component.html',
@@ -11,6 +12,7 @@ export class TransacoesComponent {
   transacoes: any[] = [];
   cupons: any[] = [];
   user : any
+  isProfessor : boolean = false
 
   constructor(
     private http: HttpClient,
@@ -20,6 +22,7 @@ export class TransacoesComponent {
   ngOnInit() {
 
     this.user = JSON.parse(localStorage.getItem('user') as any);
+
     console.log(this.user);
     this.exibirTransacoes();
     this.exibirCupons();
@@ -37,7 +40,7 @@ export class TransacoesComponent {
       if(this.user.email === "charles@gmail.com")
         this.transacoes = this.transacoes.filter(trans => trans.professor.id === this.user.id);
       else
-        this.transacoes = this.transacoes.filter(trans => trans.aluno.id === this.user.id);        
+        this.transacoes = this.transacoes.filter(trans => trans.aluno.id === this.user.id);
       console.log(this.user.creditos)
     }, error => {
       console.log('Erro: ', error);
@@ -56,6 +59,45 @@ export class TransacoesComponent {
       this.cupons = [];
       console.log('Erro: ', error);
     });
+  }
+
+  gerarPdf(){
+    const urlAluno = `http://localhost:8081/api/v1/pdf/baixarExtratoAluno/${this.user.id}`
+    const urlProf = `http://localhost:8081/api/v1/pdf/baixarExtratoProfessor/${this.user.id}`
+
+    if(this.user.email === "charles@gmail.com"){
+      this.http.get(urlProf).subscribe((response =>{
+        console.log(response)
+        alert("Pdf Gerado")
+      }), (err)=> {console.log(err)})
+
+    }else{
+
+      this.http.get(urlAluno).subscribe((response =>{
+        console.log(response)
+        alert("Pdf Gerado")
+      }), (err)=> {console.log(err); alert("Pdf Gerado")})
+
+    }
+
+  }
+
+  gerarPdfCupom(idCupom : any){
+    const URL = `http://localhost:8081/api/v1/pdf/baixarPdfCupom/${idCupom}`
+
+    this.http.get(URL).subscribe((response =>{
+      console.log(response)
+      alert("Pdf Gerado")
+    }), (err)=> {console.log(err); alert("Pdf Gerado")})
+  }
+
+  gerarPdfTrans(idTransacao : any){
+    const URL = `http://localhost:8081/api/v1/pdf/baixarPdfTransacao/${idTransacao}`
+
+    this.http.get(URL).subscribe((response =>{
+      console.log(response)
+      alert("Pdf Gerado")
+    }), (err)=> {console.log(err); alert("Pdf Gerado")})
   }
 
 }
