@@ -104,6 +104,13 @@ public class Initialize {
 
         VANTAGEM_REPOSITORY.save(vantagem);
 
+        Cupom cupom = new Cupom(
+                aluno,
+                vantagem
+        );
+
+        CUPOM_REPOSITORY.save(cupom);
+
 
 
     }

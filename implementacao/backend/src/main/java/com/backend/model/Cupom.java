@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,6 +19,8 @@ public class Cupom {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private Date data_resgate;
+
     @OneToOne
     private Aluno aluno;
 
@@ -23,6 +28,7 @@ public class Cupom {
     private Vantagem vantagem;
 
     public Cupom(Aluno aluno, Vantagem vantagem) {
+        this.data_resgate = new Date();
         this.aluno = aluno;
         this.vantagem = vantagem;
     }
