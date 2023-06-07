@@ -53,7 +53,7 @@ public class PDFController {
             @PathVariable Long idProfessor
     ){
 
-        return PDF_SERVICE.geraPdfExtrato(idProfessor);
+        return PDF_SERVICE.geraPdfExtratoProfessor(idProfessor);
 
     }
 
