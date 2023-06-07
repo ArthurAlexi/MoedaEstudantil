@@ -17,5 +17,4 @@ public interface CupomRepository extends JpaRepository<Cupom, Long> {
     List<Cupom> retornaCuponsAluno(
             @Param("id_aluno") Long id_aluno
     );
-
 }

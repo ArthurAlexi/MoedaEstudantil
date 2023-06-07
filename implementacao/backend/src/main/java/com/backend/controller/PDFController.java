@@ -17,13 +17,43 @@ public class PDFController {
 
     }
 
-    @GetMapping(value = "baixarPdf/{idCupom}",
+    @GetMapping(value = "baixarPdfCupom/{idCupom}",
     produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<?> baixarPdf(
+    public ResponseEntity<?> baixarPdfCupom(
             @PathVariable Long idCupom
     ){
 
         return PDF_SERVICE.geraPdfByCupom(idCupom);
+
+    }
+
+    @GetMapping(value = "baixarPdfTransacao/{idTransacao}",
+            produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<?> baixarPdfTransacao(
+            @PathVariable Long idTransacao
+    ){
+
+        return PDF_SERVICE.geraPdfByTransacao(idTransacao);
+
+    }
+
+    @GetMapping(value = "baixarExtratoAluno/{idAluno}",
+            produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<?> gerarExtrato(
+            @PathVariable Long idAluno
+    ){
+
+        return PDF_SERVICE.geraPdfExtrato(idAluno);
+
+    }
+
+    @GetMapping(value = "baixarExtratoProfessor/{idProfessor}",
+            produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<?> gerarExtratoProfessor(
+            @PathVariable Long idProfessor
+    ){
+
+        return PDF_SERVICE.geraPdfExtrato(idProfessor);
 
     }
 

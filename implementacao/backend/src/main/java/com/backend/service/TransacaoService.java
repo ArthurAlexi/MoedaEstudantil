@@ -22,11 +22,14 @@ public class TransacaoService {
 
     private final TransacaoRepository transacaoRepository;
 
+    private final MailService mailService;
+
     public TransacaoService(AlunoRepository alunoRepository, ProfessorRepository professorRepository,
-                            TransacaoRepository transacaoRepository) {
+                            TransacaoRepository transacaoRepository, MailService mailService) {
         this.alunoRepository = alunoRepository;
         this.professorRepository = professorRepository;
         this.transacaoRepository = transacaoRepository;
+        this.mailService = mailService;
     }
 
     public ResponseEntity<?> realizaTransacao(TransacaoDTO transacaoDTO){
@@ -57,6 +60,12 @@ public class TransacaoService {
         transacaoRepository.save(transacao);
         professorRepository.saveAndFlush(professor);
         alunoRepository.saveAndFlush(aluno);
+
+        mailService.sendMessage(professor.getEmail(), "Você acabou de realizar uma transação no valor de:" +
+              transacao.getValor()  + " para o Aluno: " + aluno.getNome());
+
+        mailService.sendMessage(aluno.getEmail(), "Você acabou de receber " + transacao.getValor() + " moedas" +
+                "do professor: " + professor.getNome());
 
         return ResponseEntity.ok(transacao);
 
