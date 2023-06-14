@@ -76,10 +76,13 @@ export class TransacoesComponent {
       this.http.get(urlAluno).subscribe((response =>{
         console.log(response)
         alert("Pdf Gerado")
-      }), (err)=> {console.log(err); alert("Pdf Gerado")})
-
+      }), (err)=> {
+        const link = document.creatElement('a');
+        link.href = err['url'];
+        link.target = '_blank';
+         ink.click();
+      })
     }
-
   }
 
   gerarPdfCupom(idCupom : any){
@@ -88,7 +91,12 @@ export class TransacoesComponent {
     this.http.get(URL).subscribe((response =>{
       console.log(response)
       alert("Pdf Gerado")
-    }), (err)=> {console.log(err); alert("Pdf Gerado")})
+    }), (err)=> {
+      const link = document.creatElement('a');
+      link.href = err['url'];
+      link.target = '_blank';
+      link.click();
+    })
   }
 
   gerarPdfTrans(idTransacao : any){
@@ -97,7 +105,12 @@ export class TransacoesComponent {
     this.http.get(URL).subscribe((response =>{
       console.log(response)
       alert("Pdf Gerado")
-    }), (err)=> {console.log(err); alert("Pdf Gerado")})
+    }), (err)=> {
+      const link = document.creatElement('a');
+      link.href = err['url'];
+      link.target = '_blank';
+      link.click();
+    })
   }
 
 }
